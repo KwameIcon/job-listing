@@ -1,4 +1,3 @@
-import Google from '../../../assets/company logos/google.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import JobSkillTag from './jobSkillTag';

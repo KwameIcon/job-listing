@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Header from "../layout/header"
 import {Button, SecondaryCard} from "../UIComponents/"
 
@@ -10,16 +9,16 @@ import Vodafone from '../../assets/company logos/vodafone.png'
 
 
 
-interface JobProps{
-    id: number;
-    time: string;
-    logo: string;
-    companyName: string;
-    jobTitle: string;
-    salaryRange: string;
-    workMode: string;
-    skills: string[];
-}
+// interface JobProps{
+//     id: number;
+//     time: string;
+//     logo: string;
+//     companyName: string;
+//     jobTitle: string;
+//     salaryRange: string;
+//     workMode: string;
+//     skills: string[];
+// }
 
 
 // dummy job data
@@ -86,7 +85,7 @@ const Showcase: React.FC = () => {
 
   return (
 
-    <div className="w-full h-screen bg-transparent relative" >
+    <div className="w-full h-fit bg-transparent relative">
 
         {/* background design */}
         <div className="absolute -top-40 -right-[200px] w-custom-width rounded-tl-gentle-rounded rounded-bl-gentle-rounded rounded-br-sharp-rounded h-custom-height bg-white rotate-custom-rotate" />
@@ -96,10 +95,10 @@ const Showcase: React.FC = () => {
             <Header/>
 
             {/* showcase content */}
-            <div className="flex flex-wrap items-center justify-between mt-8 mx-16" >
+            <div className="flex flex-wrap items-start justify-between mt-5 mx-16" >
 
                 {/* text info */}
-                <div className="w-2/4 flex flex-col items-start justify-center space-y-8" >
+                <div className="w-2/4 mt-32 flex flex-col items-start justify-center space-y-8" >
                     <h1 className="text-6xl font-black" >Are you looking for your dream <span className="text-light-blue" >job</span>?</h1>
                     <p className="text-2xl opacity-70 font-normal" >We can help you with that!</p>
                     <Button>Search a job</Button>

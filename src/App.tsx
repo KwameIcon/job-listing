@@ -10,7 +10,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className=" w-screen h-screen" >
+    <div className=" w-screen h-screen overflow-x-hidden scrollbar-none" >
       <RouterProvider router={router}/>
     </div>
   );

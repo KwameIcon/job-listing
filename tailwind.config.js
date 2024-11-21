@@ -30,10 +30,19 @@ module.exports = {
       },
       boxShadow: {
         'deep-shadow': 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-      }
+      },
 
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      addUtilities({
+        '.scrollbar-none': {
+          'scrollbar-width': 'none',
+          '-ms-overflow-style': 'none',
+        },
+      });
+    },
+  ],
 }
 

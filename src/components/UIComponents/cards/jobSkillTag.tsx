@@ -10,7 +10,7 @@ interface JobSkillTagProps {
 const JobSkillTag: React.FC<JobSkillTagProps> = ({children, color}) => {
 
     return (
-        <div className={`p-1 bg-${color}-100 rounded-2xl text-xs text-${color}-600 text-center`}>
+        <div className={`p-1 bg-${color}-100 rounded-2xl text-xs text-${color}-600 flex items-center justify-center text-center`}>
             {children}
         </div>
     )
