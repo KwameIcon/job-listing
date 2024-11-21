@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Card from "./card";
 
 
 interface FilterSearchCardProps {
@@ -20,9 +21,9 @@ const FilterSearchCard: React.FC<FilterSearchCardProps> = ({title, placeholder, 
                 <h2 className="uppercase font-extrabold">{title}</h2>
                 <span className="font-light opacity-35 tracking-wider">{placeholder}</span>
             </div>
-            <div className={`w-${childCardWidth} h-14 rounded-3xl shadow-xl bg-white flex items-center justify-center px-3 ${className}`}>
+            <Card className= {className}>
                 {children}
-            </div>
+            </Card>
         </div>
     )
 }

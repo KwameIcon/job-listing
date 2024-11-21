@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  content: ['./src/**/*.{html,js,jsx,ts,tsx,css}'],
+  content: [
+    './src/**/*.{html,js,jsx,ts,tsx,css}',
+    './public/index.html',
+  ],
   theme: {
     extend: {
       maxWidth:{
@@ -16,7 +19,7 @@ module.exports = {
         'light-yellow': '#fcd880',
       },
       borderRadius:{
-        'gentle-rounded': '20%',
+        'gentle-rounded': '100%',
         'sharp-rounded': '800%',
       },
       height:{

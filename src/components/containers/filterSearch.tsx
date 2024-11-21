@@ -36,7 +36,7 @@ const FilterSearch: React.FC = () => {
                     </form>
                 </FilterSearchCard>
 
-                <FilterSearchCard title="Budget($)" placeholder="(min-max)" className="rounded-3xl w-72">
+                <FilterSearchCard title="Budget($)" placeholder="(min-max)" className="rounded-3xl w-80">
                     <select name="jobTitle" className="bg-transparent w-full outline-none cursor-pointer">
                         <option value="product_designer">8 000 - 10 000</option>
                         <option value="backend_engineer">10 000 - 15 000</option>
@@ -77,7 +77,7 @@ const FilterSearch: React.FC = () => {
                         </select>
                     </FilterSearchCard>
 
-                    <div className="mb-5 flex items-center justify-between space-x-3 -mr-8">
+                    <div className="mb-5 flex items-center justify-between space-x-1 -mr-6">
                         <h2 className="font-extrabold uppercase">remote only</h2>
                         <div className={`w-8 h-5 ${isRemote ? 'bg-light-blue' : 'bg-gray-200'} rounded-3xl relative cursor-pointer`} onClick={() => setIsRemote((prev) => !prev)}>
                             <p className={`w-5 h-5 bg-white rounded-full absolute ${isRemote ? 'right-0' : 'left-0'} top-0 border border-light-blue`}/>

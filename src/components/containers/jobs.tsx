@@ -1,4 +1,5 @@
 import { PrimaryJobCard } from "../UIComponents";
+import Pagination from "./pagination";
 
 
 const Jobs: React.FC = () => {
@@ -28,6 +29,9 @@ const Jobs: React.FC = () => {
             <PrimaryJobCard/>
             <PrimaryJobCard/>
             <PrimaryJobCard/>
+
+            {/* pagination */}
+            <Pagination/>
         </div>
     )
 }
