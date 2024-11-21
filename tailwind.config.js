@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
-  content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
+  content: ['./src/**/*.{html,js,jsx,ts,tsx,css}'],
   theme: {
     extend: {
       maxWidth:{
@@ -28,7 +29,7 @@ module.exports = {
         'custom-rotate': '25deg'
       },
       boxShadow: {
-        'deep-shadow': 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;',
+        'deep-shadow': 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
       }
 
     },
