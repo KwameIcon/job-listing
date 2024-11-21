@@ -9,12 +9,12 @@ const FilterSearch: React.FC = () => {
 
 
     return(
-        <div className="w-full h-auto my-16 px-14">
+        <div className="w-full h-auto my-10 px-14">
             <h1 className="w-full my-2 mb-5 text-4xl">Filter your search results</h1>
             <div className="grid grid-cols-4 gap-y-5">
 
                 <FilterSearchCard title="job title" placeholder="(e.g. Keywords. Position...)" className="w-72">
-                    <select name="jobTitle" className="bg-transparent w-full outline-none">
+                    <select name="jobTitle" className="bg-transparent w-full outline-none cursor-pointer">
                         <option value="product_designer">Product Designer</option>
                         <option value="backend_engineer">Backend Engineer</option>
                         <option value="frontend_engineer">Frontend Engineer</option>
@@ -22,7 +22,7 @@ const FilterSearch: React.FC = () => {
                 </FilterSearchCard>
 
                 <FilterSearchCard title="LOcation" placeholder="(City, Country)" className="w-48">
-                    <select name="location" className="bg-transparent w-full outline-none">
+                    <select name="location" className="bg-transparent w-full outline-none cursor-pointer">
                         <option value="product_designer">Ghana, Accra</option>
                         <option value="backend_engineer">Nigeria, Abuja</option>
                         <option value="frontend_engineer">England, London</option>
@@ -37,7 +37,7 @@ const FilterSearch: React.FC = () => {
                 </FilterSearchCard>
 
                 <FilterSearchCard title="Budget($)" placeholder="(min-max)" className="rounded-3xl w-72">
-                    <select name="jobTitle" className="bg-transparent w-full outline-none">
+                    <select name="jobTitle" className="bg-transparent w-full outline-none cursor-pointer">
                         <option value="product_designer">8 000 - 10 000</option>
                         <option value="backend_engineer">10 000 - 15 000</option>
                         <option value="frontend_engineer">15 000 - 20 000</option>
@@ -45,7 +45,7 @@ const FilterSearch: React.FC = () => {
                 </FilterSearchCard>
 
                 <FilterSearchCard title="Level" placeholder="(Junior, Medium, Senior)" className="w-60">
-                    <select name="jobTitle" className="bg-transparent w-full outline-none">
+                    <select name="jobTitle" className="bg-transparent w-full outline-none cursor-pointer">
                         <option value="product_designer">Junior</option>
                         <option value="backend_engineer">Medium</option>
                         <option value="frontend_engineer">Senior</option>
@@ -53,14 +53,14 @@ const FilterSearch: React.FC = () => {
                 </FilterSearchCard>
 
                 <FilterSearchCard title="Project type" placeholder="(Long/short-term)" className="w-60">
-                    <select name="jobTitle" className="bg-transparent w-full outline-none">
+                    <select name="jobTitle" className="bg-transparent w-full outline-none cursor-pointer">
                         <option value="product_designer">Long</option>
                         <option value="backend_engineer">Short</option>
                     </select>
                 </FilterSearchCard>
 
                 <FilterSearchCard title="company size" className="w-60">
-                    <select name="jobTitle" className="bg-transparent w-full outline-none">
+                    <select name="jobTitle" className="bg-transparent w-full outline-none cursor-pointer">
                         <option value="product_designer">5 - 10</option>
                         <option value="backend_engineer">10 - 20</option>
                         <option value="frontend_engineer">20 - ...</option>
@@ -69,7 +69,7 @@ const FilterSearch: React.FC = () => {
 
                 <div className="flex items-end justify-between">
                     <FilterSearchCard title="available" className="w-44">
-                        <select name="jobTitle" className="bg-transparent w-full outline-none">
+                        <select name="jobTitle" className="bg-transparent w-full outline-none cursor-pointer">
                             <option value="product_designer">Full time</option>
                             <option value="backend_engineer">Part Time</option>
                             <option value="frontend_engineer">Remote</option>
