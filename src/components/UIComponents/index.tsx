@@ -7,3 +7,4 @@ export {default as FilterSearchCard} from './cards/filterSearchCard';
 export {default as PrimaryJobCard} from './cards/primaryJobCard';
 export {default as JobAttribute} from './cards/jobAttribute';
 export {default as Card} from './cards/card';
+export {default as ReviewCard} from './cards/reviewCard';
