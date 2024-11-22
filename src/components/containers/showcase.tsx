@@ -44,7 +44,7 @@ const JOBS = [
         salaryRange: '$15, 000 - $25, 000',
         workMode: 'office',
         skills: ['Communication Skills', 'Planning and Organization', 'Risk and Problem Managemen', 'Leadership and Team Management'],
-        color: "blue"
+        color: "indigo"
 
     },
     {
@@ -85,7 +85,7 @@ const Showcase: React.FC = () => {
 
   return (
 
-    <div className="w-full h-fit bg-transparent relative">
+    <div className="w-full min-h-full md:min-h-max lg:h-max bg-transparent relative overflow-hidden">
 
         {/* background design */}
         <div className="absolute -top-40 -right-[200px] w-custom-width rounded-tl-gentle-rounded rounded-bl-gentle-rounded rounded-br-sharp-rounded h-custom-height bg-white rotate-custom-rotate" />
@@ -95,31 +95,33 @@ const Showcase: React.FC = () => {
             <Header/>
 
             {/* showcase content */}
-            <div className="flex flex-wrap items-start justify-between mt-5 mx-16" >
+            <div className="grid sm:grid md:grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:flex  lg:flex-wrap lg:items-start lg:justify-between mt-0 sm:mt-0 md:mt-0 lg:mt-5 mx-5 sm:mx-5 md:mx-8 lg:mx-16" >
 
                 {/* text info */}
-                <div className="w-2/4 mt-32 flex flex-col items-start justify-center space-y-8" >
-                    <h1 className="text-6xl font-black" >Are you looking for your dream <span className="text-light-blue" >job</span>?</h1>
+                <div className="w-full sm:w-full md:w-11/12 lg:w-2/4 mt-8 sm:mt-8 md:mt-8 lg:mt-32 flex flex-col items-start justify-center space-y-5 sm:space-y-5 md:space-y-5 lg:space-y-8" >
+                    <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-6xl font-black" >Are you looking for your dream <span className="text-indigo-300" >job</span>?</h1>
                     <p className="text-2xl opacity-70 font-normal" >We can help you with that!</p>
                     <Button>Search a job</Button>
                 </div>
 
                 {/* jobs */}
-                <div className="w-2/4 grid grid-cols-2 gap-5" >
-                    {JOBS.map((job, index) => (
-                        <SecondaryCard 
-                            key={job.id} 
-                            color={job.color} 
-                            jobTitle= {job.jobTitle} 
-                            logo= {job.logo} 
-                            companyName= {job.companyName} 
-                            time= {job.time} 
-                            salaryRange= {job.salaryRange} 
-                            workMode= {job.workMode} 
-                            skills={job.skills}
-                            className= {index < 2 ? "ml-40" : ""}
-                        />
-                    ))}
+                <div className="w-full sm:w-full md:w-full lg:w-2/4 flex items-center justify-center mt-10 lg:mt-0" >
+                    <div className="grid grid-cols-2 gap-5">
+                        {JOBS.map((job, index) => (
+                            <SecondaryCard 
+                                key={job.id} 
+                                color={job.color} 
+                                jobTitle= {job.jobTitle} 
+                                logo= {job.logo} 
+                                companyName= {job.companyName} 
+                                time= {job.time} 
+                                salaryRange= {job.salaryRange} 
+                                workMode= {job.workMode} 
+                                skills={job.skills}
+                                className= {index < 2 ? "lg:ml-40" : ""}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

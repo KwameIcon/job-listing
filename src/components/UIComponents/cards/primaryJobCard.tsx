@@ -12,8 +12,8 @@ import { faFile, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 const PrimaryJobCard: React.FC = () => {
 
     return(
-        <div className="w-full my-5 rounded-3xl shadow-xl bg-white p-5 flex flex-col items-start justify-center space-y-1">
-            <div className="w-full flex items-center justify-between font-bold text-2xl">
+        <div className="w-full my-5 rounded-3xl shadow-xl bg-white p-3 md:p-5 lg:p-5 flex flex-col items-start justify-center space-y-1">
+            <div className="w-full flex items-center justify-between font-bold text-sm md:text-2xl">
                 <h1>Front-End Developer</h1>
                 <span>5 000 - 10 000$</span>
             </div>
@@ -31,16 +31,16 @@ const PrimaryJobCard: React.FC = () => {
                         <FontAwesomeIcon icon={faFile}/>
                     </JobAttribute>
                 </div>
-                <span className="text-light-blue font-medium">/Monthly</span>
+                <span className="text-indigo-300 font-medium">/Monthly</span>
             </div>
             <div className="w-full flex items-center justify-between pt-2">
-                <div className="flex items-center justify-center space-x-4">
-                    <JobSkillTag color="gray" className="text-light-blue">Ethereum</JobSkillTag>
-                    <JobSkillTag color="gray" className="text-light-blue">Web Design</JobSkillTag>
-                    <JobSkillTag color="gray" className="text-light-blue">JavaScript</JobSkillTag>
-                    <JobSkillTag color="gray" className="text-light-blue">Solidity</JobSkillTag>
+                <div className="flex items-center justify-center space-x-2 md:space-x-4 lg:space-x-4">
+                    <JobSkillTag color="gray" className="text-indigo-300">Ethereum</JobSkillTag>
+                    <JobSkillTag color="gray" className="text-indigo-300">React</JobSkillTag>
+                    <JobSkillTag color="gray" className="text-indigo-300">JavaScript</JobSkillTag>
+                    <JobSkillTag color="gray" className="text-indigo-300">Solidity</JobSkillTag>
                 </div>
-                <Button className="font-extrabold">View</Button>
+                <Button className=" max-w-32 md:max-w-48 lg:max-w-48 font-extrabold">View</Button>
             </div>
         </div>
     )

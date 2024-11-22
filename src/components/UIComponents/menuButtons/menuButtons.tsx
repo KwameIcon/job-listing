@@ -43,8 +43,8 @@ const MenuButtons: React.FC = () => {
                     key={i}
                     onClick={() => handleNavigation(i)}
                     className={`cursor-pointer border-b-2 ${
-                        btn.current ? 'border-light-blue' : 'border-transparent'
-                    } hover:text-light-blue`}
+                        btn.current ? 'border-indigo-300' : 'border-transparent'
+                    } hover:text-indigo-300`}
                 >
                     {btn.title}
                 </li>

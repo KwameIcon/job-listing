@@ -15,8 +15,6 @@ module.exports = {
       },
       colors:{
         'custom-light': '#f6fafd',
-        'light-blue': '#96a5ff',
-        'light-yellow': '#fcd880',
       },
       borderRadius:{
         'gentle-rounded': '100%',

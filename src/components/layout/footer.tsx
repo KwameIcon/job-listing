@@ -8,7 +8,7 @@ import { faFacebook, faInstagram, faLinkedin, faTwitter } from "@fortawesome/fre
 const Footer: React.FC = () => {
 
     return(
-        <div className="w-full h-80 px-20 bg-black py-10 flex justify-between items-center">
+        <div className="w-full min-h-96 md:h-80 lg:h-80 px-10 md:px-20 lg:px-20 bg-black py-10 flex justify-between items-center flex-wrap space-y-5 md:space-y-0 lg:space-y-0 pt-32 md:pt-0 lg:pt-0">
             <div>
                 <Logo className="text-white"/>
                 <p className="text-white text-opacity-60 w-96">We take awesome job offers to help creatives and technicals find their new future</p>
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
                     <div className="w-6 h-6 bg-purple-200 rounded-full text-sm flex items-center justify-center">
                         <FontAwesomeIcon icon={faTwitter} className=""/>
                     </div>
-                    <div className="w-6 h-6 bg-blue-200 rounded-full text-sm flex items-center justify-center">
+                    <div className="w-6 h-6 bg-indigo-300 rounded-full text-sm flex items-center justify-center">
                         <FontAwesomeIcon icon={faLinkedin} className=""/>
                     </div>
                     <div className="w-6 h-6 bg-cyan-200 rounded-full text-sm flex items-center justify-center">
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
                 </div>
             </div>
 
-            <ul className="flex flex-col items-end space-y-1">
+            <ul className="flex flex-col items-start md:items-end lg:items-end space-y-1">
                 <li className="text-white text-opacity-75">Our Clients</li>
                 <li className="text-white text-opacity-75">For employers</li>
                 <li className="text-white text-opacity-75">Blog</li>
