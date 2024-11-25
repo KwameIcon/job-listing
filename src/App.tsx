@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HomeScreen } from "./components/pages";
+import {ReactQueryDevtools} from 'react-query/devtools'
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ function App() {
   return (
     <div className=" w-screen h-screen overflow-x-hidden scrollbar-none" >
       <RouterProvider router={router}/>
+      <ReactQueryDevtools initialIsOpen = {false} position="bottom-left" />
     </div>
   );
 }

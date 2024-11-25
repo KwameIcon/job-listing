@@ -6,6 +6,8 @@ import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 const Pagination: React.FC = () => {
 
+
+
     return(
         <div className="w-full flex items-center justify-end space-x-1 text-xs pt-5">
             <Card className=" w-fit h-8 rounded-sm shadow-deep-shadow shadow-slate-300 font-bold cursor-pointer">

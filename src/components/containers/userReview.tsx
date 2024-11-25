@@ -4,6 +4,7 @@ import { ReviewCard } from "../UIComponents";
 import ProfilePic1 from '../../assets/profile pic/1-intro-photo-final.jpg'
 import ProfilePic2 from '../../assets/profile pic/38e79cde1ea2513fb9ac957261f4d710.jpg'
 import ProfilePic3 from '../../assets/profile pic/cool-profile-picture-87h46gcobjl5e4xu.jpg'
+import { QuoteIcon } from "../../assets/quote";
 
 
 
@@ -12,10 +13,14 @@ const UserReviews: React.FC = () => {
     // states management
 
     return (
-        <div className="relative z-10 w-full flex items-center justify-between flex-wrap space-y-10 md:space-y-0 lg:space-y-0 mt-20 md:mt-32 lg:mt-32 px-5 md:px-12 lg:px-16">
+        <div className="relative z-10 w-full flex items-center justify-between flex-wrap space-y-10 md:space-y-0 lg:space-y-0 mt-20 md:mt-32 lg:mt-32 px-5 md:px-12 lg:px-16 ">
+
+            <div className="w-[600px] m-auto h-[700px] bg-green-500 bg-opacity-10 rounded-br-gentle-rounded rounded-bl-sharp-rounded rounded-tl-gentle-rounded rounded-tr-gentle-rounded rotate-[30deg] absolute -top-[200px] md:-top-[200px] lg:-top-[200px] -left-[700px] md:-left-[600px] lg:-left-[400px]">
+                <QuoteIcon className="fill-white opacity-65 md:opacity-100 lg:opacity-100 w-44 absolute top-16 md:top-5 lg:top-5 right-20 md:right-48 lg:right-48 -z-10 rotate-[120deg]"/>
+            </div>
 
             {/* text content */}
-            <div className="w-full md:w-full lg:w-4/12 shrink-0 mb-10 md:mb-10 lg:mb-0">
+            <div className="w-full md:w-full lg:w-4/12 shrink-0 mb-10 md:mb-10 lg:mb-0 relative z-10">
                 <h1 className="text-3xl font-extrabold w-11/12 md:w-10/12 lg:w-10/12
                 mb-8">What the users said about us</h1>
                 <p className=" text-black text-opacity-50 w-10/12 text-justify">Finding the best job offer for designers and developers has never been easy. We have +6000 satisfied customers, and the number still growing.</p>

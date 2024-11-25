@@ -1,84 +1,25 @@
+import { ThreeDot } from "react-loading-indicators";
 import Header from "../layout/header"
+import { JobProps } from "../pages/homeScreen";
 import {Button, SecondaryCard} from "../UIComponents/"
 
-// images
-import Google from '../../assets/company logos/google.png'
-import Amazon from '../../assets/company logos/amazon.png'
-import Axoni from '../../assets/company logos/image-removebg-preview.png'
-import Vodafone from '../../assets/company logos/vodafone.png'
 
 
 
-// interface JobProps{
-//     id: number;
-//     time: string;
-//     logo: string;
-//     companyName: string;
-//     jobTitle: string;
-//     salaryRange: string;
-//     workMode: string;
-//     skills: string[];
-// }
-
-
-// dummy job data
-const JOBS = [
-    {
-        id: 1,
-        companyName: 'Google Ghana',
-        jobTitle: 'Front-end Developer',
-        logo: `${Google}`,
-        time: '1d ago',
-        salaryRange: '$10, 000 - $20, 000',
-        workMode: 'Remote',
-        skills: ['.net developer', 'React js', 'mssql', 'next js'],
-        color: "cyan"
-
-    },
-    {
-        id: 2,
-        companyName: 'Axoni',
-        jobTitle: 'Project Manager',
-        logo: `${Axoni}`,
-        time: '1h ago',
-        salaryRange: '$15, 000 - $25, 000',
-        workMode: 'office',
-        skills: ['Communication Skills', 'Planning and Organization', 'Risk and Problem Managemen', 'Leadership and Team Management'],
-        color: "indigo"
-
-    },
-    {
-        id: 3,
-        companyName: 'Vodafone Ghana',
-        jobTitle: 'project designer',
-        logo: `${Vodafone}`,
-        time: '12d ago',
-        salaryRange: '$9, 000 - $23, 000',
-        workMode: 'office',
-        skills: ['Creative and Conceptual Skills', 'Technical and Software Skills', 'Project Management and Organization', 'Communication and Presentation'],
-        color: "yellow"
-
-    },
-    {
-        id: 4,
-        companyName: 'Amazon',
-        jobTitle: 'Backend Engineer',
-        logo: `${Amazon}`,
-        time: '15 ago',
-        salaryRange: '$10, 000 - $20, 000',
-        workMode: 'Remote',
-        skills: ['Python', 'MangoDB', 'Docker'],
-        color: "purple"
-
-    }
-]
+interface ShowcaseProps {
+    jobs: JobProps[];
+    isLoading: boolean;
+}
 
 
 
-const Showcase: React.FC = () => {
+const Showcase: React.FC<ShowcaseProps> = ({jobs, isLoading}) => {
 
-    // states management
-    // const [jobs, setJobs] = useState<JobProps[]>([{} as JobProps]);
+
+
+
+    // display only 4 items 
+    const limitedJobs = jobs.slice(0, 4);
 
 
 
@@ -107,20 +48,18 @@ const Showcase: React.FC = () => {
                 {/* jobs */}
                 <div className="w-full sm:w-full md:w-full lg:w-2/4 flex items-center justify-center mt-10 lg:mt-0" >
                     <div className="grid grid-cols-2 gap-5">
-                        {JOBS.map((job, index) => (
-                            <SecondaryCard 
-                                key={job.id} 
-                                color={job.color} 
-                                jobTitle= {job.jobTitle} 
-                                logo= {job.logo} 
-                                companyName= {job.companyName} 
-                                time= {job.time} 
-                                salaryRange= {job.salaryRange} 
-                                workMode= {job.workMode} 
-                                skills={job.skills}
-                                className= {index < 2 ? "lg:ml-40" : ""}
-                            />
-                        ))}
+                        {isLoading ? 
+                            <ThreeDot color="#32cd32" size="small" text="" textColor="" />
+                        :
+                            limitedJobs.map((job, index) => (
+                                <SecondaryCard 
+                                    key={job.id} 
+                                    color={index === 0 ? 'cyan' : index === 1 ? 'indigo' : index === 2 ? 'yellow' : 'purple'} 
+                                    job={job}
+                                    className= {index < 2 ? "lg:ml-16" : ""}
+                                />
+                            ))
+                        }
                     </div>
                 </div>
             </div>
