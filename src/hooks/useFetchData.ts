@@ -7,7 +7,7 @@ const url = 'https://jobs-api14.p.rapidapi.com/v2/list?query=Web%20Developer&loc
 const options = {
 	method: 'GET',
 	headers: {
-		'x-rapidapi-key': 'c9d06227d8msh5b4f434b616e799p12645cjsn4d82fdcfbd98',
+		'x-rapidapi-key': '63a01c2872msh0a8ec1e3eaca998p158ac1jsn59ff697a1142',
 		'x-rapidapi-host': 'jobs-api14.p.rapidapi.com'
 	}
 };
