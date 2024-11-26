@@ -2,8 +2,15 @@ import { useQuery } from "react-query";
 
 
 
-// API
-const url = 'https://jobs-api14.p.rapidapi.com/v2/list?query=Web%20Developer&location=United%20States&autoTranslateLocation=false&remoteOnly=false&employmentTypes=fulltime%3Bparttime%3Bintern%3Bcontractor&nextPage=';
+
+
+
+
+export const useFetchPaginatedData = (nextPage: string | null) =>{
+
+
+    // API
+const url = `https://jobs-api14.p.rapidapi.com/v2/list?query=Web%20Developer&location=United%20States&autoTranslateLocation=false&remoteOnly=false&employmentTypes=fulltime%3Bparttime%3Bintern%3Bcontractor&nextPage=`;
 const options = {
 	method: 'GET',
 	headers: {
@@ -11,10 +18,6 @@ const options = {
 		'x-rapidapi-host': 'jobs-api14.p.rapidapi.com'
 	}
 };
-
-
-
-export const useFetchPaginatedData = (nextPage: string | null) =>{
 
 
     // fetch function

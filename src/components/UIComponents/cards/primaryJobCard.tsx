@@ -13,12 +13,11 @@ import { JobProps } from "../../pages/homeScreen";
 // job card types
 interface PrimaryJobCardProps {
     job:JobProps;
-    isLoading: boolean;
 }
 
 
 
-const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, isLoading}) => {
+const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job}) => {
 
 
 
@@ -27,6 +26,7 @@ const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, isLoading}) => {
         const match = salary.match(/(\d{1,3}(?:,\d{3})*)/);
         return match ? match[0] : null; 
     }
+
 
 
     return(
@@ -53,7 +53,7 @@ const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, isLoading}) => {
             </div>
             <div className="w-full flex items-center justify-between pt-2">
                 <div className="flex items-center justify-center space-x-2 md:space-x-4 lg:space-x-4">
-                    {job.jobProvider.map((provider, i) => (
+                    {job.jobProviders.map((provider, i) => (
                         <JobSkillTag color="gray" className="text-indigo-300">{provider.name}</JobSkillTag>
                     ))}
                 </div>

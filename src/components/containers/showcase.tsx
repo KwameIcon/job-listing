@@ -1,21 +1,46 @@
 import { ThreeDot } from "react-loading-indicators";
 import Header from "../layout/header"
-import { JobProps } from "../pages/homeScreen";
 import {Button, SecondaryCard} from "../UIComponents/"
+import { FiltersProps, useFetchFilterData } from "../../hooks/useFilterData";
+import { JobProps } from "../pages/homeScreen";
+import { useEffect, useState } from "react";
 
 
-
-
-interface ShowcaseProps {
-    jobs: JobProps[];
-    isLoading: boolean;
+interface ShowcaseProps{
+    filters: FiltersProps
 }
 
 
 
-const Showcase: React.FC<ShowcaseProps> = ({jobs, isLoading}) => {
+const Showcase: React.FC<ShowcaseProps> = ({filters}) => {
 
+  const [jobs, setJobs] = useState<JobProps[]>([]);
 
+    // fetch jobs
+  const {data, isLoading} = useFetchFilterData(filters);
+
+// console.log(data);
+
+ useEffect(() => {
+  if (data?.jobs) {
+    const getJobs: JobProps[] = data.jobs.map((job: any) => ({
+      id: job.id,
+      title: job.title,
+      companyName: job.company,
+      image: job.image,
+      location: job.location,
+      employmentType: job.employmentType,
+      datePosted: job.datePosted,
+      salaryRange: job.salaryRange,
+      jobProviders: Array.isArray(job.jobProviders) ? job.jobProviders.map((provider: any) => ({
+        name: provider.jobProvider ?? "N/A",
+        url: provider.url ?? "#",
+      }))
+      : [],
+    }));
+    setJobs(getJobs);
+  }
+}, [data]);
 
 
     // display only 4 items 

@@ -15,6 +15,8 @@ interface SecondaryCardProps{
 
 const SecondaryCard: React.FC<SecondaryCardProps> = ({className, color, job}) => {
 
+    // console.log(job)
+
 
 
     return(
@@ -37,7 +39,7 @@ const SecondaryCard: React.FC<SecondaryCardProps> = ({className, color, job}) =>
                     </div>
                 </div>
                 <div className='mt-7 w-full grid grid-cols-2 gap-2'>
-                    {job.jobProvider.slice(0, 4).map((provider, i) => (
+                    {job.jobProviders.slice(0, 4).map((provider, i) => (
                         <JobSkillTag color= {color} key={i}>{provider.name}</JobSkillTag>
                     ))}
                 </div>

@@ -1,10 +1,10 @@
 import { Jobs, Showcase, UserReviews } from "../containers"
 import FilterSearch from "../containers/filterSearch"
 import { Footer, MainLayout } from "../layout"
-import {QuoteIcon} from '../../assets/quote';
 import { Button, Card } from "../UIComponents";
-import { useFetchData } from "../../hooks/useFetchData";
-import { useEffect, useState } from "react";
+// import { useFetchData } from "../../hooks/useFetchData";
+import { useState } from "react";
+import { FiltersProps } from "../../hooks/useFilterData";
 
 
 
@@ -25,40 +25,49 @@ export interface JobProps{
   employmentType:string;
   datePosted:string;
   salaryRange: string;
-  jobProvider: JobProvider[];
+  jobProviders: JobProvider[];
 }
 
 
 
 
 function HomeScreen() {
-  const [jobs, setJobs] = useState<JobProps[]>([]);
+
+  // set default filter values
+  const [filters, setFilters] = useState<FiltersProps>({
+    query: 'project manager',
+    location: 'United States',
+    remoteOnly: 'false',
+    employmentTypes: '',
+    datePosted: null,
+    nextPage: undefined
+  })
 
 
 
   // fetch jobs
-  const {data, isLoading} = useFetchData();
+//   const {data, isLoading} = useFetchData();
 
-  useEffect(() => {
-  if (data?.jobs) {
-    const getJobs: JobProps[] = data.jobs.map((job: any) => ({
-      id: job.id,
-      title: job.title,
-      companyName: job.company,
-      image: job.image,
-      location: job.location,
-      employmentType: job.employmentType,
-      datePosted: job.datePosted,
-      salaryRange: job.salaryRange,
-      jobProvider: Array.isArray(job.jobProviders) ? job.jobProviders.map((provider: any) => ({
-        name: provider.jobProvider ?? "N/A",
-        url: provider.url ?? "#",
-      }))
-      : [],
-    }));
-    setJobs(getJobs);
-  }
-}, [data]);
+//   useEffect(() => {
+//   if (data?.jobs) {
+//     const getJobs: JobProps[] = data.jobs.map((job: any) => ({
+//       id: job.id,
+//       title: job.title,
+//       companyName: job.company,
+//       image: job.image,
+//       location: job.location,
+//       employmentType: job.employmentType,
+//       datePosted: job.datePosted,
+//       salaryRange: job.salaryRange,
+//       jobProvider: Array.isArray(job.jobProviders) ? job.jobProviders.map((provider: any) => ({
+//         name: provider.jobProvider ?? "N/A",
+//         url: provider.url ?? "#",
+//       }))
+//       : [],
+//     }));
+//     setJobs(getJobs);
+//   }
+// }, [data]);
 
 
   
@@ -70,15 +79,15 @@ function HomeScreen() {
 
 
       {/* showcase container layout */}
-      <Showcase jobs={jobs} isLoading={isLoading}/>
+      <Showcase filters={filters}/>
 
 
       {/* search by filter container layout */}
-      <FilterSearch/>
+      <FilterSearch filters={filters} setFilters={setFilters}/>
 
 
       {/* jobs */}
-      <Jobs />
+      <Jobs filters={filters} setFilters={setFilters} />
 
       
       {/* user reviews */}
