@@ -8,9 +8,13 @@ interface JobsProp {
 }
 
 const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
+
+
+    // get data from fetch hook
     const { data, isLoading } = useFetchFilterData(filters);
 
-    const jobs = data?.jobs || []; // Default to an empty array if jobs is undefined
+    // get jobs
+    const jobs = data?.jobs || [];
     const jobCount = jobs.length;
     const nextPage = data?.nextPage || null;
 
@@ -19,6 +23,10 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
             setFilters((prev) => ({ ...prev, nextPage }));
         }
     };
+
+
+    // set data to local storage
+    localStorage.setItem('jobs', JSON.stringify(jobs));
 
     return (
         <div className="w-full lg:w-9/12 m-auto p-4 md:p-4 lg:py-5 relative z-10">

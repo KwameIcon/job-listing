@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faUser } from "@fortawesome/free-solid-svg-icons";
 import JobSkillTag from './jobSkillTag';
-import { JobProps } from "../../pages/homeScreen";
+import { JobProps } from "../../../pages/homeScreen";
 
 
 
@@ -15,7 +15,6 @@ interface SecondaryCardProps{
 
 const SecondaryCard: React.FC<SecondaryCardProps> = ({className, color, job}) => {
 
-    // console.log(job)
 
 
 
@@ -31,7 +30,7 @@ const SecondaryCard: React.FC<SecondaryCardProps> = ({className, color, job}) =>
                         </span>
                         <span className={`text-sm font-light font-serif text-${color}-600 opacity-80`}>{job.companyName.slice(0, 30) + "..."}</span>
                     </div>
-                    <div className={`w-full text-sm md:text-xl lg:text-xl font-bold opacity-80 text-${color}-600 my-1 md:my-0 lg:my-0`}>{job.title.slice(0, 22) + "..."}</div>
+                    <div className={`w-full text-sm md:text-xl lg:text-xl font-bold opacity-80 text-${color}-600 my-1 md:my-0 lg:my-0`}>{job.title.slice(0, 18) + "..."}</div>
                     <div className={`text-normal md:tracking-widest lg:tracking-widest text-${color}-600 opacity-80 font-light`}>{job.salaryRange ? "Salary $"+job.salaryRange : "Salary N/A"}</div>
                     <div className="flex items-center justify-start space-x-4 mt-2">
                         <FontAwesomeIcon icon={faLocationDot} className='text-sm'/>
@@ -40,7 +39,7 @@ const SecondaryCard: React.FC<SecondaryCardProps> = ({className, color, job}) =>
                 </div>
                 <div className='mt-7 w-full grid grid-cols-2 gap-2'>
                     {job.jobProviders.slice(0, 4).map((provider, i) => (
-                        <JobSkillTag color= {color} key={i}>{provider.name}</JobSkillTag>
+                        <JobSkillTag color= {color} key={i}>{provider.jobProvider.trim().slice(0, 15) + "..."}</JobSkillTag>
                     ))}
                 </div>
             </div>

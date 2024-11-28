@@ -18,7 +18,6 @@ import { useQuery } from "react-query";
 const fetchJobs = async(filters: FiltersProps) => {
 
     const {query, location, remoteOnly, employmentTypes, datePosted, nextPage} = filters;
-    const baseUrl = "https://jobs-api14.p.rapidapi.com/v2/list";
 
 
     // conditionally include parameters
@@ -33,10 +32,10 @@ const fetchJobs = async(filters: FiltersProps) => {
 
         const options = {
             method: 'GET',
-            url: baseUrl,
+            url: "https://jobs-api14.p.rapidapi.com/v2/list",
             params,
             headers: {
-                'x-rapidapi-key': 'ca60a3ab3dmshf63a0f8d8db25a5p187e74jsn2ac8992df72e',
+                'x-rapidapi-key': 'f422163b6bmshf7c768d713a1505p19ee7ajsnb2679f1e4a75',
                 'x-rapidapi-host': 'jobs-api14.p.rapidapi.com'
             }
         }

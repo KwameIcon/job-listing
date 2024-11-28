@@ -3,12 +3,32 @@ import JobAttribute from "./jobAttribute";
 import JobSkillTag from "./jobSkillTag";
 
 // images
-import Axoni from '../../../assets/company logos/image-removebg-preview.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile, faLocationDot, faUser } from "@fortawesome/free-solid-svg-icons";
-import { JobProps } from "../../pages/homeScreen";
+import { JobProps } from "../../../pages/homeScreen";
+import { useState } from "react";
+import { JobDetails } from "../../modals";
+
+// job provider types
+export interface JobProvider {
+  jobProvider: string;
+  url: string;
+}
 
 
+// job types
+export interface Job{
+    id: string;
+    title: string;
+    company:string;
+    description:string;
+    image:string;
+    location:string;
+    employmentType:string;
+    datePosted:string;
+    salaryRange:string;
+    jobProviders:JobProvider[];
+}
 
 // job card types
 interface PrimaryJobCardProps {
@@ -19,6 +39,13 @@ interface PrimaryJobCardProps {
 
 const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job}) => {
 
+    // states management
+    // const [jobs, setJobs] = useState([]);
+  // state management
+    const [isProductDetails, setIsProductDetails] = useState(false);
+    const [selectedJob, setSelectedJob] = useState<Job>();
+    const [relatedJobs, setRelatedJobs] = useState<Job[]>();
+
 
 
     // Fn to return only digits from salary string
@@ -27,6 +54,31 @@ const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job}) => {
         return match ? match[0] : null; 
     }
 
+    
+    // fetch job details
+    const handleFetchDetail = (jobId: string, jobTitle: string) => {
+        if (!jobId) {
+            console.error("Invalid job ID provided");
+            alert("Invalid job Id Provided");
+            return;
+        }
+        
+        try {
+            let storedJobs = (localStorage.getItem('jobs'))
+            let jobObject = (storedJobs ? JSON.parse(storedJobs) : null);
+
+            const job = jobObject?.find((job:{id:string}) => job.id === jobId);
+            setSelectedJob(job);
+
+            const relatedJobs = jobObject?.filter((job: {title:string}) => job.title.includes(jobTitle));
+            setRelatedJobs(relatedJobs);
+
+            setIsProductDetails(true);
+        } catch (error) {
+            console.error("Error retrieving data", error);
+        }
+        
+    };
 
 
     return(
@@ -54,11 +106,15 @@ const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job}) => {
             <div className="w-full flex items-center justify-between pt-2">
                 <div className="flex items-center justify-center space-x-2 md:space-x-4 lg:space-x-4">
                     {job.jobProviders.map((provider, i) => (
-                        <JobSkillTag color="gray" className="text-indigo-300">{provider.name}</JobSkillTag>
+                        <JobSkillTag color="gray" key={i} className="text-indigo-300">{provider.jobProvider.trim().slice(0, 12) + "..."}</JobSkillTag>
                     ))}
                 </div>
-                <Button className=" max-w-32 md:max-w-48 lg:max-w-48 font-extrabold">View</Button>
+                <Button className=" max-w-32 md:max-w-48 lg:max-w-48 font-extrabold" onClick={() => handleFetchDetail(job.id, job.title)}>View</Button>
             </div>
+
+
+            {/* job details modal */}
+            {isProductDetails && <JobDetails setIsProductDetails={setIsProductDetails} selectedJob={selectedJob} relatedJobs={relatedJobs}/>}
         </div>
     )
 }

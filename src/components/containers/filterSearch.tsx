@@ -48,30 +48,43 @@ const FilterSearch: React.FC<FilterSearchProps> = ({ filters, setFilters }) => {
                         value={filters.query}
                         onChange={(e) => handleFilterSearch("query", e.target.value)}
                     >
-                        {data?.jobs?.map((job: any) => (
+                        {/* {data?.jobs?.map((job: any) => (
                             <option key={job.id} value={job.title}>
                                 {job.title}
                             </option>
-                        ))}
+                        ))} */}
+                        <option value="project manager">Project Manager</option>
+                        <option value="software engineer">Software Engineer</option>
+                        <option value="web developer">Web Developer</option>
+                        <option value="accountant">Accountant</option>
+                        <option value="data scientist">Data Scientist</option>
+                        <option value="graphic designer">Graphic Designer</option>
+                        <option value="teaching">Teaching</option>
                     </select>
                 </FilterSearchCard>
 
-                <FilterSearchCard title="Location" placeholder="(City, Country)" className="w-48">
+                <FilterSearchCard title="Location" placeholder="(City, Country)" className="w-44 md:w-72 lg:w-60">
                     <select
                         name="location"
                         className="bg-transparent w-full outline-none cursor-pointer"
                         value={filters.location}
                         onChange={(e) => handleFilterSearch("location", e.target.value)}
                     >
-                        {data?.jobs?.map((job: any) => (
+                        {/* {data?.jobs?.map((job: any) => (
                             <option key={job.id} value={job.location}>
                                 {job.location}
                             </option>
-                        ))}
+                        ))} */}
+                        <option value="united state">United State</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Britain">Britain</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
                     </select>
                 </FilterSearchCard>
 
-                <FilterSearchCard title="Date Posted" placeholder="5h ago" className="rounded-3xl w-48 md:w-56 lg:w-80">
+                {/* <FilterSearchCard title="Date Posted" placeholder="5h ago" className="rounded-3xl w-48 md:w-56 lg:w-80">
                     <select
                         name="datePosted"
                         className="bg-transparent w-full outline-none cursor-pointer"
@@ -84,20 +97,24 @@ const FilterSearch: React.FC<FilterSearchProps> = ({ filters, setFilters }) => {
                             </option>
                         ))}
                     </select>
-                </FilterSearchCard>
+                </FilterSearchCard> */}
 
-                <FilterSearchCard title="Employment Type" className="w-44 md:w-60 lg:w-48">
+                <FilterSearchCard title="Employment Type" className="w-44 md:w-72 lg:w-60">
                     <select
                         name="employmentType"
                         className="bg-transparent w-full outline-none cursor-pointer"
                         value={filters.employmentTypes}
                         onChange={(e) => handleFilterSearch("employmentTypes", e.target.value)}
                     >
-                        {data?.jobs?.map((job: any) => (
+                        {/* {data?.jobs?.map((job: any) => (
                             <option key={job.id} value={job.employmentType}>
                                 {job.employmentType}
                             </option>
-                        ))}
+                        ))} */}
+                        <option value="fulltime">Full Time</option>
+                        <option value="parttime">Part Time</option>
+                        <option value="intern">Intern</option>
+                        <option value="contractor">Contractor</option>
                     </select>
                 </FilterSearchCard>
 

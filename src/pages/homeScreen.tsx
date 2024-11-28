@@ -1,21 +1,20 @@
-import { Jobs, Showcase, UserReviews } from "../containers"
-import FilterSearch from "../containers/filterSearch"
-import { Footer, MainLayout } from "../layout"
-import { Button, Card } from "../UIComponents";
-// import { useFetchData } from "../../hooks/useFetchData";
+
 import { useState } from "react";
-import { FiltersProps } from "../../hooks/useFilterData";
+import { FiltersProps } from "../hooks/useFilterData";
+import { Footer, MainLayout } from "../components/layout";
+import { FilterSearch, Jobs, Showcase, UserReviews } from "../components/containers";
+import { Button, Card } from "../components/UIComponents";
 
 
-
+// job provider types
 export interface JobProvider {
-  name: string;
+  jobProvider: string;
   url: string;
 }
 
 
 
-// job type
+// job types
 export interface JobProps{
   id: string;
   title:string;
@@ -30,8 +29,9 @@ export interface JobProps{
 
 
 
-
+// home screen component
 function HomeScreen() {
+
 
   // set default filter values
   const [filters, setFilters] = useState<FiltersProps>({
@@ -42,32 +42,6 @@ function HomeScreen() {
     datePosted: null,
     nextPage: undefined
   })
-
-
-
-  // fetch jobs
-//   const {data, isLoading} = useFetchData();
-
-//   useEffect(() => {
-//   if (data?.jobs) {
-//     const getJobs: JobProps[] = data.jobs.map((job: any) => ({
-//       id: job.id,
-//       title: job.title,
-//       companyName: job.company,
-//       image: job.image,
-//       location: job.location,
-//       employmentType: job.employmentType,
-//       datePosted: job.datePosted,
-//       salaryRange: job.salaryRange,
-//       jobProvider: Array.isArray(job.jobProviders) ? job.jobProviders.map((provider: any) => ({
-//         name: provider.jobProvider ?? "N/A",
-//         url: provider.url ?? "#",
-//       }))
-//       : [],
-//     }));
-//     setJobs(getJobs);
-//   }
-// }, [data]);
 
 
   
@@ -87,7 +61,7 @@ function HomeScreen() {
 
 
       {/* jobs */}
-      <Jobs filters={filters} setFilters={setFilters} />
+      <Jobs filters={filters} setFilters={setFilters}/>
 
       
       {/* user reviews */}
@@ -105,7 +79,6 @@ function HomeScreen() {
             <Button className="w-32 !text-indigo-500 !bg-white hover:bg-gray-100">Post a job</Button>
           </Card>
         </div>
-
 
         {/* footer layout component */}
         <Footer/>

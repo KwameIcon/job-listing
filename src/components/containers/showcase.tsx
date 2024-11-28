@@ -2,8 +2,8 @@ import { ThreeDot } from "react-loading-indicators";
 import Header from "../layout/header"
 import {Button, SecondaryCard} from "../UIComponents/"
 import { FiltersProps, useFetchFilterData } from "../../hooks/useFilterData";
-import { JobProps } from "../pages/homeScreen";
 import { useEffect, useState } from "react";
+import { JobProps } from "../../pages/homeScreen";
 
 
 interface ShowcaseProps{
@@ -33,7 +33,7 @@ const Showcase: React.FC<ShowcaseProps> = ({filters}) => {
       datePosted: job.datePosted,
       salaryRange: job.salaryRange,
       jobProviders: Array.isArray(job.jobProviders) ? job.jobProviders.map((provider: any) => ({
-        name: provider.jobProvider ?? "N/A",
+        jobProvider: provider.jobProvider ?? "N/A",
         url: provider.url ?? "#",
       }))
       : [],

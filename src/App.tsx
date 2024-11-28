@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomeScreen } from "./components/pages";
 import {ReactQueryDevtools} from 'react-query/devtools'
+import { HomeScreen } from "./pages";
 
 const router = createBrowserRouter([
   {

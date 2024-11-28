@@ -1,7 +1,7 @@
 
 interface JobSkillTagProps {
     children: string;
-    color: string;
+    color?: string;
     className?: string;
 }
 
