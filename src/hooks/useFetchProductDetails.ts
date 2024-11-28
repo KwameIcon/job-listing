@@ -14,7 +14,7 @@ const fetchJobDetails = async(JOB_ID: string) =>{
       language: 'en_GB'
     },
     headers: {
-      'x-rapidapi-key': 'f422163b6bmshf7c768d713a1505p19ee7ajsnb2679f1e4a75',
+      'x-rapidapi-key': '13139939e6mshcb6c98caa2ab43ap1a1d6fjsnf6a0ce30483c',
       'x-rapidapi-host': 'jobs-api14.p.rapidapi.com'
     }
   };

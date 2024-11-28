@@ -1,6 +1,7 @@
+import { ReactNode } from "react";
 
 interface JobSkillTagProps {
-    children: string;
+    children: ReactNode;
     color?: string;
     className?: string;
 }

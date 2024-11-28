@@ -11,7 +11,7 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
 
 
     // get data from fetch hook
-    const { data, isLoading } = useFetchFilterData(filters);
+    const { data, isLoading, isFetching } = useFetchFilterData(filters);
 
     // get jobs
     const jobs = data?.jobs || [];
@@ -49,11 +49,11 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
                         }
                     >
                         <option>Date of Publication</option>
-                        {jobs.map((job: any) => (
-                            <option key={job.id} value={job.datePosted}>
-                                {job.datePosted}
-                            </option>
-                        ))}
+                        <option value="1 hour ago">Ih ago</option>
+                        <option value="1 day ago">1 day ago</option>
+                        <option value="2 days ago">2 day ago</option>
+                        <option value="3 days ago">3 day ago</option>
+                        <option value="4 days ago">4 day ago</option>
                     </select>
                 </div>
             </div>
@@ -64,7 +64,7 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
                     <ThreeDot color="#32cd32" size="small" text="" textColor="" />
                 ) : (
                     jobs.map((job: any) => (
-                        <PrimaryJobCard key={job.id} job={job} />
+                        <PrimaryJobCard key={job.id} job={job} isFetching = {isFetching}/>
                     ))
                 )}
             </div>

@@ -1,9 +1,9 @@
 import { Button, JobSkillTag } from "../UIComponents";
-import Amazon from '../../assets/company logos/amazon.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBriefcase, faClose, faDollarSign, faGlobe, faIdBadge, faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import React, { useEffect } from "react";
+import { faBriefcase, faClose, faDollarSign, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { Job } from "../UIComponents/cards/primaryJobCard";
+import { JobProps } from "../../pages/homeScreen";
+import { handleGetJobDetails } from "../../utils/handleGetJobDetails";
 
 
 // component types
@@ -11,18 +11,28 @@ interface JobDetailsProps {
     selectedJob:Job | undefined;
     relatedJobs: Job[] | undefined
     setIsProductDetails: React.Dispatch<React.SetStateAction<boolean>>;
+    setSelectedJob: React.Dispatch<React.SetStateAction<Job | undefined>>
+    setRelatedJobs: React.Dispatch<React.SetStateAction<Job[] | undefined>>
+    job:JobProps;
 }
 
 
 
 // job details component
-const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsProductDetails}) => {
+const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsProductDetails, job, setSelectedJob, setRelatedJobs}) => {
 
 
 // get stored job
-    useEffect(() => {
-        console.log(selectedJob);
-    },[selectedJob]);
+    // useEffect(() => {
+    //     console.log(selectedJob);
+    // },[selectedJob]);
+
+
+
+    // get job details
+    const handleFetchDetail = (jobId: String, jobTitle: string) => {
+        handleGetJobDetails(jobId, jobTitle, setSelectedJob, setRelatedJobs, setIsProductDetails)
+    }
     
 
     return(
@@ -91,14 +101,14 @@ const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsP
                             <div className="h-full border rounded-xl flex flex-col items-start justify-center p-5">
                                 <div className="w-full flex items-center justify-between">
                                     <div className="flex items-center justify-start gap-2 mb-1">
-                                        <img src= {Amazon} alt="Amazon" className="w-16" />
+                                        <img src= {job.image} alt="Amazon" className="w-16" />
                                         <div className="grid grid-cols-1">
                                             <h2 className="w-full text-black text-opacity-55 text-sm flex items-center justify-start gap-2 mb-1">
                                                 <span className="text-xl">{job.title.slice(0, 20)+"..."}</span>
                                             </h2>
                                             <div className="flex items-center justify-start gap-2 text-sm">
                                                 <div className="flex items-center justify-start gap-1">
-                                                    <img src= {Amazon} alt="Amazon" className="w-8 -ml-3" />
+                                                    <img src= {job.image} alt="Amazon" className="w-8 -ml-3" />
                                                     <span className=" text-black text-opacity-50">{job.company.slice(0, 10)+"..."}</span>
                                                 </div>
                                                 <div className="flex items-center justify-start gap-2">
@@ -108,7 +118,7 @@ const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsP
                                             </div>
                                         </div>
                                     </div>
-                                    <Button className="text-sm w-9 h-7">View</Button>
+                                    <Button className="text-sm w-9 h-7" onClick={() => handleFetchDetail(job.id, job.title)}>View</Button>
                                 </div>
                                 <div className="flex items-center gap-3 mt-2">
                                     <div className="flex items-center justify-start gap-2">
