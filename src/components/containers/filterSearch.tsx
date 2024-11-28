@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { FilterSearchCard } from "../UIComponents";
-import { FiltersProps, useFetchFilterData } from "../../hooks/useFilterData";
+import { FiltersProps } from "../../hooks/useFilterData";
 
+
+
+// component types
 interface FilterSearchProps {
     filters: FiltersProps;
     setFilters: React.Dispatch<React.SetStateAction<FiltersProps>>;
 }
 
+
+// component
 const FilterSearch: React.FC<FilterSearchProps> = ({ filters, setFilters }) => {
-    // State management
+
+    // State
     const [isRemote, setIsRemote] = useState(false);
-
-
-
-    // Get jobs from useFetchFilterData hook
-    const { data,} = useFetchFilterData(filters);
-
 
 
     // Filter function
@@ -25,11 +25,10 @@ const FilterSearch: React.FC<FilterSearchProps> = ({ filters, setFilters }) => {
 
 
 
-    // Check if remote
+    // Check remote jobs
     useEffect(() => {
         setFilters((prev) => ({ ...prev, remoteOnly: isRemote ? "true" : "false" }));
     }, [isRemote, setFilters]);
-
 
 
 
@@ -48,11 +47,6 @@ const FilterSearch: React.FC<FilterSearchProps> = ({ filters, setFilters }) => {
                         value={filters.query}
                         onChange={(e) => handleFilterSearch("query", e.target.value)}
                     >
-                        {/* {data?.jobs?.map((job: any) => (
-                            <option key={job.id} value={job.title}>
-                                {job.title}
-                            </option>
-                        ))} */}
                         <option value="project manager">Project Manager</option>
                         <option value="software engineer">Software Engineer</option>
                         <option value="web developer">Web Developer</option>
@@ -70,11 +64,6 @@ const FilterSearch: React.FC<FilterSearchProps> = ({ filters, setFilters }) => {
                         value={filters.location}
                         onChange={(e) => handleFilterSearch("location", e.target.value)}
                     >
-                        {/* {data?.jobs?.map((job: any) => (
-                            <option key={job.id} value={job.location}>
-                                {job.location}
-                            </option>
-                        ))} */}
                         <option value="united state">United State</option>
                         <option value="Canada">Canada</option>
                         <option value="Spain">Spain</option>
@@ -84,21 +73,7 @@ const FilterSearch: React.FC<FilterSearchProps> = ({ filters, setFilters }) => {
                     </select>
                 </FilterSearchCard>
 
-                {/* <FilterSearchCard title="Date Posted" placeholder="5h ago" className="rounded-3xl w-48 md:w-56 lg:w-80">
-                    <select
-                        name="datePosted"
-                        className="bg-transparent w-full outline-none cursor-pointer"
-                        value={filters.datePosted ?? ""}
-                        onChange={(e) => handleFilterSearch("datePosted", e.target.value)}
-                    >
-                        {data?.jobs?.map((job: any) => (
-                            <option key={job.id} value={job.datePosted}>
-                                {job.datePosted}
-                            </option>
-                        ))}
-                    </select>
-                </FilterSearchCard> */}
-
+                
                 <FilterSearchCard title="Employment Type" className="w-44 md:w-72 lg:w-60">
                     <select
                         name="employmentType"
@@ -106,11 +81,6 @@ const FilterSearch: React.FC<FilterSearchProps> = ({ filters, setFilters }) => {
                         value={filters.employmentTypes}
                         onChange={(e) => handleFilterSearch("employmentTypes", e.target.value)}
                     >
-                        {/* {data?.jobs?.map((job: any) => (
-                            <option key={job.id} value={job.employmentType}>
-                                {job.employmentType}
-                            </option>
-                        ))} */}
                         <option value="fulltime">Full Time</option>
                         <option value="parttime">Part Time</option>
                         <option value="intern">Intern</option>

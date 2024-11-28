@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 
+// component types
 interface JobSkillTagProps {
     children: ReactNode;
     color?: string;
@@ -7,7 +8,7 @@ interface JobSkillTagProps {
 }
 
 
-
+// component
 const JobSkillTag: React.FC<JobSkillTagProps> = ({children, color, className}) => {
 
     return (

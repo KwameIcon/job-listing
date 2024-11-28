@@ -5,21 +5,21 @@ import { FiltersProps, useFetchFilterData } from "../../hooks/useFilterData";
 import { useEffect, useState } from "react";
 import { JobProps } from "../../pages/homeScreen";
 
-
+// component types
 interface ShowcaseProps{
     filters: FiltersProps
 }
 
 
-
+// component
 const Showcase: React.FC<ShowcaseProps> = ({filters}) => {
 
+  // states
   const [jobs, setJobs] = useState<JobProps[]>([]);
 
     // fetch jobs
   const {data, isLoading} = useFetchFilterData(filters);
 
-// console.log(data);
 
  useEffect(() => {
   if (data?.jobs) {

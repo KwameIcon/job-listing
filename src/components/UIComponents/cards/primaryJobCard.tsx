@@ -1,8 +1,6 @@
 import Button from "../buttons/button";
 import JobAttribute from "./jobAttribute";
 import JobSkillTag from "./jobSkillTag";
-
-// images
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile, faLocationDot, faUser } from "@fortawesome/free-solid-svg-icons";
 import { JobProps } from "../../../pages/homeScreen";
@@ -10,6 +8,7 @@ import { useState } from "react";
 import { JobDetails } from "../../modals";
 import { handleGetJobDetails } from "../../../utils/handleGetJobDetails";
 import LoadCardElement from "../../loaders/loadCardElement";
+
 
 // job provider types
 export interface JobProvider {
@@ -43,8 +42,6 @@ interface PrimaryJobCardProps {
 const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, isFetching}) => {
 
     // states management
-    // const [jobs, setJobs] = useState([]);
-  // state management
     const [isProductDetails, setIsProductDetails] = useState(false);
     const [selectedJob, setSelectedJob] = useState<Job>();
     const [relatedJobs, setRelatedJobs] = useState<Job[]>();

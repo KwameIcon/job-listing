@@ -2,22 +2,27 @@ import { Card, PrimaryJobCard } from "../UIComponents";
 import { ThreeDot } from "react-loading-indicators";
 import { FiltersProps, useFetchFilterData } from "../../hooks/useFilterData";
 
+// jobs component types
 interface JobsProp {
     filters: FiltersProps;
     setFilters: React.Dispatch<React.SetStateAction<FiltersProps>>;
 }
 
+
+// component
 const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
 
-
-    // get data from fetch hook
+    // get data from fetchFilterData hook
     const { data, isLoading, isFetching } = useFetchFilterData(filters);
+
 
     // get jobs
     const jobs = data?.jobs || [];
     const jobCount = jobs.length;
     const nextPage = data?.nextPage || null;
 
+
+    // handle pagination
     const handleNextPageFetch = () => {
         if (nextPage) {
             setFilters((prev) => ({ ...prev, nextPage }));

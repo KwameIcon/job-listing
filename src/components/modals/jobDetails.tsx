@@ -22,10 +22,6 @@ interface JobDetailsProps {
 const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsProductDetails, job, setSelectedJob, setRelatedJobs}) => {
 
 
-// get stored job
-    // useEffect(() => {
-    //     console.log(selectedJob);
-    // },[selectedJob]);
 
 
 
@@ -43,22 +39,22 @@ const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsP
                 <FontAwesomeIcon icon={faClose} className="w-full h-full text-red-600"/>
             </div>
 
-            {/* card */}
-            <div className="w-10/12 h-5/6 m-auto bg-white shadow-2xl p-10 flex flex-wrap items-start justify-center rounded overflow-hidden">
+            {/* container */}
+            <div className="w-10/12 h-5/6 mx-auto my-0 bg-white shadow-2xl p-5 sm:p-5 mdp-5 lg:p-10 grid grid-cols-1 sm:grid sm:grid-cols-1 md:grid md:grid-cols-1 lg:flex lg:items-start lg:justify-center rounded overflow-y-scroll sm:overflow-y-scroll scrollbar-none lg:overflow-hidden">
 
             {/* product details */}
-                <div className="w-3/5 shrink-0 h-full overflow-hidden overflow-y-scroll scrollbar-none pr-1">
-                    <div className="flex justify-between items-center">
-                        <h1 className="text-3xl font-bold">{selectedJob?.title}</h1>
-                        <Button className="w-56">Apply Now</Button>
+                <div className="w-full sm:w-full md:w-full lg:w-3/5 shrink-0 h-auto sm:h-auto md:h-auto lg:h-full lg:overflow-hidden lg:overflow-y-scroll lg:scrollbar-none pr-1">
+                    <div className="w-full flex justify-between items-center">
+                        <h1 className="w-56 text-2xl lg:text-3xl font-bold">{selectedJob?.title}</h1>
+                        <Button className="w-3/12">Apply Now</Button>
                     </div>
-                    <div className="flex items-center justify-start">
-                        <div className="w-32 h-28 overflow-hidden">
-                            <img src= {selectedJob?.image} alt="Amazon" className="w-full h-full rounded" />
+                    <div className="flex items-center justify-start w-full">
+                        <div className="w-28 lg:w-32 h-16 lg:h-28 overflow-hidden">
+                            <img src= {selectedJob?.image} alt={selectedJob?.company.slice(0, 6) + "..."} className="w-full h-full rounded" />
                         </div>
                         <div className="grid grid-cols-2">
                             <div className="flex items-center justify-start gap-1">
-                                <img src= {selectedJob?.image} alt="Amazon" className="w-5" />
+                                <img src= {selectedJob?.image} alt="" className="w-5" />
                                 <span className=" text-black text-opacity-50">{selectedJob?.company}</span>
                             </div>
                             <div className="flex items-center justify-start gap-2">
@@ -69,10 +65,6 @@ const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsP
                                 <FontAwesomeIcon icon={faBriefcase} className="w-4 text-indigo-300"/>
                                 <span className=" text-black text-opacity-50">{selectedJob?.employmentType}</span>
                             </div>
-                            {/* <div className="flex items-center justify-start gap-2">
-                                <FontAwesomeIcon icon={faGlobe} className="w-4 text-indigo-300"/>
-                                <span className=" text-black text-opacity-50">Remote</span>
-                            </div> */}
                         </div>
                     </div>
                     <div>
@@ -85,14 +77,12 @@ const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsP
                                 <JobSkillTag key={i} className="bg-indigo-100 text-indigo-500 rounded-md">{provider.jobProvider}</JobSkillTag>
                             ))
                         }
-                        {/* <JobSkillTag className="bg-indigo-100 text-indigo-500 rounded-md">Upwork</JobSkillTag>
-                        <JobSkillTag className="bg-indigo-100 text-indigo-500 rounded-md">Remote.IO</JobSkillTag> */}
                     </div>
                 </div>
 
 
-                {/* similar jobs */}
-                <div className="w-2/5 h-full shrink-0 pl-5 overflow-hidden overflow-y-scroll scrollbar-none">
+                {/* related jobs */}
+                <div className="w-full lg:w-2/5 h-full shrink-0 pl-5 lg:overflow-hidden lg:overflow-y-scroll lg:scrollbar-none mt-5 lg:mt-0">
                     <p className="text-xl text-black text-opacity-60">Similar Jobs</p>
                     {/* cards */}
                     <div className="grid grid-cols-1 gap-3">
@@ -101,14 +91,14 @@ const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsP
                             <div className="h-full border rounded-xl flex flex-col items-start justify-center p-5">
                                 <div className="w-full flex items-center justify-between">
                                     <div className="flex items-center justify-start gap-2 mb-1">
-                                        <img src= {job.image} alt="Amazon" className="w-16" />
+                                        <img src= {job.image} alt={job.company.slice(0, 6) + "..."} className="w-16" />
                                         <div className="grid grid-cols-1">
                                             <h2 className="w-full text-black text-opacity-55 text-sm flex items-center justify-start gap-2 mb-1">
                                                 <span className="text-xl">{job.title.slice(0, 20)+"..."}</span>
                                             </h2>
                                             <div className="flex items-center justify-start gap-2 text-sm">
                                                 <div className="flex items-center justify-start gap-1">
-                                                    <img src= {job.image} alt="Amazon" className="w-8 -ml-3" />
+                                                    <img src= {job.image} alt={job.company.slice(0, 6) + "..."} className="w-8 -ml-3" />
                                                     <span className=" text-black text-opacity-50">{job.company.slice(0, 10)+"..."}</span>
                                                 </div>
                                                 <div className="flex items-center justify-start gap-2">
@@ -125,10 +115,6 @@ const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsP
                                         <FontAwesomeIcon icon={faBriefcase} className="w-4 text-indigo-300"/>
                                         <span className=" text-black text-opacity-50 text-sm">{job.employmentType}</span>
                                     </div>
-                                    {/* <div className="flex items-center justify-start gap-2">
-                                        <FontAwesomeIcon icon={faGlobe} className="w-4 text-indigo-300"/>
-                                        <span className=" text-black text-opacity-50 text-sm">Remote</span>
-                                    </div> */}
                                     <div className="flex items-center justify-start gap-2">
                                         <FontAwesomeIcon icon={faDollarSign} className="w-4 text-indigo-300"/>
                                         <span className=" text-black text-opacity-50 text-sm">{job.salaryRange}</span>
@@ -139,7 +125,6 @@ const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsP
                                 </div>
                             </div>
                         ))}
-                        {/*  */}
                     </div>
                 </div>
             </div>
