@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        custom: '1024px',
+      },
       maxWidth:{
         '1440': '1440px',
       },
@@ -31,14 +34,6 @@ module.exports = {
       },
       boxShadow: {
         'deep-shadow': 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-      },
-      keyframes: {
-        shine: {
-          to: { 'background-position-x': '-200%' },
-        },
-      },
-      animation: {
-        shine: 'shine 1s infinite',
       },
 
     },

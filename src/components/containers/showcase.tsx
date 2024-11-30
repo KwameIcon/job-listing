@@ -67,7 +67,7 @@ const Showcase: React.FC<ShowcaseProps> = ({filters}) => {
 
                 {/* text info */}
                 <div className="w-full md:w-11/12 lg:w-2/4 mt-8 lg:mt-24 flex flex-col items-start justify-center space-y-5 lg:space-y-8" >
-                    <h1 className="text-4xl md:text-6xl font-black" >Are you looking for your dream <span className="text-indigo-300" >job</span>?</h1>
+                    <h1 className="text-4xl md:text-6xl custom:text-5xl font-black" >Are you looking for your dream <span className="text-indigo-300" >job</span>?</h1>
                     <p className="text-xl md:text-2xl: opacity-70 font-normal" >We can help you with that!</p>
                     <Button>Search a job</Button>
                 </div>

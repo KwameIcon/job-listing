@@ -20,7 +20,7 @@ const UserReviews: React.FC = () => {
             </div>
 
             {/* text content */}
-            <div className="w-full lg:w-4/12 shrink-0 mb-10 lg:mb-0 relative z-10">
+            <div className="w-full custom:w-full xl:w-4/12 shrink-0 mb-10 lg:mb-0 relative z-10">
                 <h1 className="text-3xl font-extrabold w-full md:w-10/12 mb-5 md:mb-8">What the users said about us</h1>
                 <p className=" text-black text-opacity-50 w-full md:w-10/12 text-justify">Finding the best job offer for designers and developers has never been easy. We have +6000 satisfied customers, and the number still growing.</p>
             </div>

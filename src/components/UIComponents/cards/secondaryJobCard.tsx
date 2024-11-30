@@ -30,7 +30,7 @@ const SecondaryCard: React.FC<SecondaryCardProps> = ({className, color, bgColor,
 
 
     return(
-        <div className={`w-full md:w-72 h-50 md:h-60 lg:h-60 ${bgColor} overflow-hidden relative rounded-xl shadow-xl ${className}`} >
+        <div className={`w-11/12 m-auto md:w-72 custom:w-52 xl:w-72 h-50 md:h-60 custom:h-64 xl:h-60 ${bgColor} overflow-hidden relative rounded-xl shadow-xl ${className}`} >
 
             <div className="absolute -top-[90px] lg:-top-[105px] z-0 w-[500px] h-72 bg-transparent shadow-deep-shadow origin-top-left transform rotate-[50deg] lg:rotate-45 rounded-tr-full rounded-tl-full " />
             <div className="absolute -top-24 lg:-top-28 -left-16 z-10 w-[500px] h-72 bg-transparent shadow-deep-shadow origin-top-left transform rotate-[50deg] lg:rotate-45 rounded-tr-full rounded-tl-full" />

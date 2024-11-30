@@ -66,7 +66,7 @@ const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, isLoading, isFetchi
         <div className={`w-full my-5 rounded-3xl ${isLoading || isFetching ? 'animate-pulse' : ''} shadow-xl bg-white p-3 md:p-5 lg:p-5 flex flex-col items-start justify-center space-y-3 md:space-y-1`}>
 
                 <div className="w-full flex flex-wrap items-start justify-between font-bold text-sm md:space-y-0 md:text-2xl md:-mb-4">
-                    <h1 className="w-full md:w-auto text-xl font-sans ">{job.title}</h1>
+                    <h1 className="w-full md:w-auto text-xl font-sans ">{job.title.length > 30 ? job.title.slice(0, 30) + '...' : job.title}</h1>
                     <span className="w-full md:w-auto flex items-center text-indigo-300 justify-between md:flex-col md:items-end font-normal md:font-bold">
                         <span className = {`font-medium text-xl`}>
                             {
