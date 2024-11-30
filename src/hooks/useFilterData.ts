@@ -35,7 +35,7 @@ const fetchJobs = async(filters: FiltersProps) => {
             url: "https://jobs-api14.p.rapidapi.com/v2/list",
             params,
             headers: {
-                'x-rapidapi-key': '13139939e6mshcb6c98caa2ab43ap1a1d6fjsnf6a0ce30483c',
+                'x-rapidapi-key': '9b6a2f47d6msh4c377c6a3e152a8p14b840jsnccdc20f86914',
                 'x-rapidapi-host': 'jobs-api14.p.rapidapi.com'
             }
         }
@@ -53,7 +53,7 @@ export const useFetchFilterData = (filters: FiltersProps) => {
 
     return useQuery(
         ['jobs', filters], 
-        () =>fetchJobs(filters), 
+        () =>fetchJobs(filters),
         {
             enabled: isValidFilters,
             staleTime: Infinity,

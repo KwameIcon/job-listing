@@ -1,6 +1,9 @@
 import { Card, PrimaryJobCard } from "../UIComponents";
 import { ThreeDot } from "react-loading-indicators";
 import { FiltersProps, useFetchFilterData } from "../../hooks/useFilterData";
+import { JobDetails } from "../modals";
+import { useState } from "react";
+import { Job } from "../UIComponents/cards/primaryJobCard";
 
 // jobs component types
 interface JobsProp {
@@ -15,11 +18,17 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
     // get data from fetchFilterData hook
     const { data, isLoading, isFetching } = useFetchFilterData(filters);
 
+    // states 
+    const [isProductDetails, setIsProductDetails] = useState(false);
+    const [selectedJob, setSelectedJob] = useState<Job | undefined>();
+    const [relatedJobs, setRelatedJobs] = useState<Job[] | undefined>();
+
 
     // get jobs
     const jobs = data?.jobs || [];
     const jobCount = jobs.length;
     const nextPage = data?.nextPage || null;
+    
 
 
     // handle pagination
@@ -33,14 +42,15 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
     // set data to local storage
     localStorage.setItem('jobs', JSON.stringify(jobs));
 
+
     return (
-        <div className="w-full lg:w-9/12 m-auto p-4 md:p-4 lg:py-5 relative z-10">
+        <div className="w-full m-auto -mt-5 md:mt-5 py-4 px-2 md:p-4 lg:py-5 relative z-10">
             {/* Header text */}
-            <div className="flex items-center justify-between">
-                <p className="w-4/12 md:w-auto opacity-60">
+            <div className="w-10/12 m-auto flex flex-col mb-3 md:flex-row md:items-center md:justify-between space-y-3 md:px-10 lg:px-0">
+                <p className=" w-full md:w-6/12 text-left opacity-60">
                     We found {jobCount} jobs available for you:
                 </p>
-                <div>
+                <div className="w-full md:w-6/12 text-right md:text-right">
                     <span className="opacity-60">Sort by: </span>
                     <select
                         name="date_of_publication"
@@ -64,25 +74,26 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
             </div>
 
             {/* Job listing */}
-            <div>
+            <div className="lg:w-9/12 m-auto">
                 {isLoading ? (
                     <ThreeDot color="#32cd32" size="small" text="" textColor="" />
                 ) : (
                     jobs.map((job: any) => (
-                        <PrimaryJobCard key={job.id} job={job} isFetching = {isFetching}/>
+                        <PrimaryJobCard key={job.id} setSelectedJob={setSelectedJob} setIsProductDetails={setIsProductDetails} setRelatedJobs={setRelatedJobs} isLoading = {isLoading} isFetching = {isFetching} job={job}/>
                     ))
                 )}
             </div>
 
             {/* Pagination */}
-            <div className="w-full flex items-center justify-end space-x-1 text-xs pt-5">
+            <div className="w-full lg:w-9/12 flex items-center justify-end pt-5 m-auto">
                 <Card
-                    className="w-fit h-8 rounded-sm shadow-deep-shadow shadow-slate-300 font-bold cursor-pointer"
+                    className="w-24 h-9 rounded-sm shadow-deep-shadow shadow-slate-300 font-bold cursor-pointer"
                     onClick={handleNextPageFetch}
                 >
                     Next
                 </Card>
             </div>
+            {isProductDetails && <JobDetails  setIsProductDetails={setIsProductDetails} selectedJob={selectedJob} relatedJobs={relatedJobs} setRelatedJobs={setRelatedJobs} setSelectedJob={setSelectedJob}/>}
         </div>
     );
 };

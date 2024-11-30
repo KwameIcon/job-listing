@@ -69,14 +69,14 @@ function HomeScreen() {
 
 
       {/* post job card */}
-      <div className="mt-32 md:mt-48 h-max lg:mt-60 relative">
-        <div className=" absolute -top-20 w-full flex justify-center">
-            <Card className="w-11/12 md:w-8/12 lg:w-9/12 m-auto h-44 md:h-40 lg:h-40 !bg-indigo-300 flex items-center justify-center md:justify-center lg:justify-center flex-wrap py-4 px-20 space-y-5 md:space-y-0 lg:space-y-0 lg:space-x-24">
+      <div className="w-full mt-32 md:mt-48 h-max lg:mt-60 relative">
+        <div className=" absolute -top-24 md:-top-20 w-full flex justify-center px-1 md:px-0">
+            <Card className="w-full md:w-9/12 lg:w-9/12 m-auto h-auto md:h-40 !bg-indigo-300 flex items-center justify-center md:justify-center flex-wrap py-4 px-1 md:px-20 space-y-4 md:space-y-0 lg:space-y-0 lg:space-x-24">
             <div className="flex flex-col justify-center items-start space-y-2">
               <h5 className="text-xl text-white text-center md:text-left lg:text-left">Does your company needs great employees?</h5>
               <p className="w-full text-sm text-center md:text-left lg:text-left">To post job offer, visit our subpage For Employer</p>
             </div>
-            <Button className="w-32 !text-indigo-500 !bg-white hover:bg-gray-100">Post a job</Button>
+            <Button className="w-32 !text-indigo-500 !bg-white !hover:bg-gray-200 text-xl font-bold">Post a job</Button>
           </Card>
         </div>
 

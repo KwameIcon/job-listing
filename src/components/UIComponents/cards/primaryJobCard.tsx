@@ -1,13 +1,14 @@
 import Button from "../buttons/button";
 import JobAttribute from "./jobAttribute";
-import JobSkillTag from "./jobSkillTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile, faLocationDot, faUser } from "@fortawesome/free-solid-svg-icons";
-import { JobProps } from "../../../pages/homeScreen";
-import { useState } from "react";
-import { JobDetails } from "../../modals";
+import { faFile, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { handleGetJobDetails } from "../../../utils/handleGetJobDetails";
-import LoadCardElement from "../../loaders/loadCardElement";
+import { JobProviderTag } from "..";
+
+
+
+// default logo if company logo not provided
+const placeholderLogo = "https://via.placeholder.com/150?text=No+Logo";
 
 
 // job provider types
@@ -33,18 +34,17 @@ export interface Job{
 
 // job card types
 interface PrimaryJobCardProps {
-    job:JobProps;
+    job:Job;
+    isLoading: boolean;
     isFetching:boolean;
+    setIsProductDetails: React.Dispatch<React.SetStateAction<boolean>>;
+    setSelectedJob: React.Dispatch<React.SetStateAction<Job | undefined>>
+    setRelatedJobs: React.Dispatch<React.SetStateAction<Job[] | undefined>>
 }
 
 
 
-const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, isFetching}) => {
-
-    // states management
-    const [isProductDetails, setIsProductDetails] = useState(false);
-    const [selectedJob, setSelectedJob] = useState<Job>();
-    const [relatedJobs, setRelatedJobs] = useState<Job[]>();
+const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, isLoading, isFetching, setSelectedJob, setRelatedJobs, setIsProductDetails}) => {
 
 
 
@@ -57,46 +57,52 @@ const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, isFetching}) => {
     
     // fetch job details
     const handleFetchDetail = (jobId: string, jobTitle: string) => {
-        handleGetJobDetails(jobId,jobTitle, setSelectedJob, setRelatedJobs, setIsProductDetails)
+        handleGetJobDetails(jobId, jobTitle, setSelectedJob, setRelatedJobs, setIsProductDetails)
     };
 
 
+
     return(
-        <div className="w-full my-5 rounded-3xl shadow-xl bg-white p-3 md:p-5 lg:p-5 flex flex-col items-start justify-center space-y-1">
-            {isFetching ? (<LoadCardElement/>) : (<>
-                <div className="w-full flex items-center justify-between font-bold text-sm md:text-2xl">
-                    <h1>{job.title}</h1>
-                    <span>{job.salaryRange ? "Salary $"+extractSalary(job.salaryRange) : "Salary: N/A"}</span>
+        <div className={`w-full my-5 rounded-3xl ${isLoading || isFetching ? 'animate-pulse' : ''} shadow-xl bg-white p-3 md:p-5 lg:p-5 flex flex-col items-start justify-center space-y-3 md:space-y-1`}>
+
+                <div className="w-full flex flex-wrap items-start justify-between font-bold text-sm md:space-y-0 md:text-2xl md:-mb-4">
+                    <h1 className="w-full md:w-auto text-xl font-sans ">{job.title}</h1>
+                    <span className="w-full md:w-auto flex items-center text-indigo-300 justify-between md:flex-col md:items-end font-normal md:font-bold">
+                        <span className = {`font-medium text-xl`}>
+                            {
+                                job.salaryRange ? 
+                                (<span>Salary <span className="font-Pacifico">{"$" + extractSalary(job.salaryRange)}</span></span>) :
+                                (<span className="italic font-normal"> Salary N/A</span>)
+                            }
+                        </span>
+                        <span className="font-medium text-sm">/Yearly</span>
+                    </span>
                 </div>
-                <div className="w-full flex items-center justify-between">
-                    <div className="flex items-center justify-center">
-                        <JobAttribute attribute={job.companyName}>
-                            {job.image ? <img src= {job.image} alt="Oliv" /> : <FontAwesomeIcon icon={faUser}/>}
-                        </JobAttribute>
 
-                        <JobAttribute attribute={job.location}>
-                            <FontAwesomeIcon icon={faLocationDot}/>
-                        </JobAttribute>
+                <div className="w-full flex flex-wrap items-center justify-start space-x-3 my-2 ">
+                    <JobAttribute attribute= {job.company && job.company.length > 25 ? job.company.slice(0, 25) + "..." : job.company}>
+                        <img src= {job.image || placeholderLogo} alt= {`${job.company} logo`} className="w-10 mr-2 rounded-full md:w-12 object-contain -ml-1"/>
+                    </JobAttribute>
 
-                        <JobAttribute attribute={job.employmentType}>
-                            <FontAwesomeIcon icon={faFile}/>
-                        </JobAttribute>
-                    </div>
-                    <span className="text-indigo-300 font-medium">/Yearly</span>
+                    <JobAttribute attribute={job.location.length > 25 ? job.location.slice(0, 25) + "..." : job.location} className="font-light !text-sm">
+                        <FontAwesomeIcon icon={faLocationDot} className="w-2 !text-sm h-2 md:w-5 md:h-5 mr-1"/>
+                    </JobAttribute>
+
+                    <JobAttribute attribute={job.employmentType} className="font-light !text-sm">
+                        <FontAwesomeIcon icon={faFile} className="w-2 !text-sm h-2 md:w-5 md:h-5 mr-1"/>
+                    </JobAttribute>
                 </div>
                 <div className="w-full flex items-center justify-between pt-2">
-                    <div className="flex items-center justify-center space-x-2 md:space-x-4 lg:space-x-4">
-                        {job.jobProviders.map((provider, i) => (
-                            <JobSkillTag color="gray" key={i} className="text-indigo-300">{provider.jobProvider.trim().slice(0, 12) + "..."}</JobSkillTag>
-                        ))}
+                    <div className="grid grid-cols-2 gap-2 md:gap-x-5 md:flex md:items-center md:justify-center md:space-x-4 ">
+                        {
+                            job.jobProviders.slice(0, 4).map((provider, i) => (
+                                <JobProviderTag url= {provider.url} className="!bg-gray-200 !text-indigo-400">{provider.jobProvider.length > 12 ? provider.jobProvider.slice(0, 12) + '...' : provider.jobProvider}</JobProviderTag>
+                            ))
+                        }
                     </div>
-                    <Button className=" max-w-32 md:max-w-48 lg:max-w-48 font-extrabold" onClick={() => handleFetchDetail(job.id, job.title)}>View</Button>
-                   </div>
-            </>)}
-
-
-            {/* job details modal */}
-            {isProductDetails && <JobDetails setIsProductDetails={setIsProductDetails} selectedJob={selectedJob} relatedJobs={relatedJobs} job={job} setRelatedJobs={setRelatedJobs} setSelectedJob={setSelectedJob}/>}
+                    <Button className=" max-w-20 md:max-w-48 lg:max-w-48 font-extrabold" onClick={() => handleFetchDetail(job.id, job.title)} >View</Button>
+                </div>
+            
         </div>
     )
 }

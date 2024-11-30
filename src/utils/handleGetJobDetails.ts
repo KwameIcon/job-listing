@@ -33,5 +33,4 @@ export const handleGetJobDetails = (
         } catch (error) {
             console.error("Error retrieving data", error);
         }
-        
 }

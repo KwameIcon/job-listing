@@ -18,7 +18,9 @@ const Showcase: React.FC<ShowcaseProps> = ({filters}) => {
   const [jobs, setJobs] = useState<JobProps[]>([]);
 
     // fetch jobs
-  const {data, isLoading} = useFetchFilterData(filters);
+  const {data, isLoading, isFetching} = useFetchFilterData(filters);
+
+  // const myJobs = localStorage.getItem('jobs');
 
 
  useEffect(() => {
@@ -51,40 +53,59 @@ const Showcase: React.FC<ShowcaseProps> = ({filters}) => {
 
   return (
 
-    <div className="w-full min-h-full md:min-h-max lg:h-max bg-transparent relative overflow-hidden">
+    <div className="w-full h-fit bg-transparent relative py-5">
 
         {/* background design */}
-        <div className="absolute -top-40 -right-[200px] w-custom-width rounded-tl-gentle-rounded rounded-bl-gentle-rounded rounded-br-sharp-rounded h-custom-height bg-white rotate-custom-rotate" />
+        <div className="absolute md:-top-56 lg:-top-40 md:-right-[200px] md:w-[750px] lg:w-custom-width md:h-[850px] lg:h-custom-height md:rounded-tl-gentle-rounded md:rounded-bl-gentle-rounded md:rounded-br-sharp-rounded md:bg-white md:rotate-custom-rotate" />
 
         <div className="relative z-10" >
             {/* header component */}
             <Header/>
 
-            {/* showcase content */}
-            <div className="grid sm:grid md:grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:flex  lg:flex-wrap lg:items-start lg:justify-between mt-0 sm:mt-0 md:mt-0 lg:mt-5 mx-5 sm:mx-5 md:mx-8 lg:mx-16" >
+            {/* showcase content container */}
+            <div className="grid grid-cols-1 lg:flex lg:items-start lg:justify-between mt-0 md:mt-5 mx-5 md:mx-8 lg:mx-16" >
 
                 {/* text info */}
-                <div className="w-full sm:w-full md:w-11/12 lg:w-2/4 mt-8 sm:mt-8 md:mt-8 lg:mt-32 flex flex-col items-start justify-center space-y-5 sm:space-y-5 md:space-y-5 lg:space-y-8" >
-                    <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-6xl font-black" >Are you looking for your dream <span className="text-indigo-300" >job</span>?</h1>
-                    <p className="text-2xl opacity-70 font-normal" >We can help you with that!</p>
+                <div className="w-full md:w-11/12 lg:w-2/4 mt-8 lg:mt-24 flex flex-col items-start justify-center space-y-5 lg:space-y-8" >
+                    <h1 className="text-4xl md:text-6xl font-black" >Are you looking for your dream <span className="text-indigo-300" >job</span>?</h1>
+                    <p className="text-xl md:text-2xl: opacity-70 font-normal" >We can help you with that!</p>
                     <Button>Search a job</Button>
                 </div>
 
                 {/* jobs */}
-                <div className="w-full sm:w-full md:w-full lg:w-2/4 flex items-center justify-center mt-10 lg:mt-0" >
-                    <div className="grid grid-cols-2 gap-5">
-                        {isLoading ? 
-                            <ThreeDot color="#32cd32" size="small" text="" textColor="" />
-                        :
-                            limitedJobs.map((job, index) => (
-                                <SecondaryCard 
-                                    key={job.id} 
-                                    color={index === 0 ? 'cyan' : index === 1 ? 'indigo' : index === 2 ? 'yellow' : 'purple'} 
+                <div className="w-full lg:w-2/4 flex items-center justify-center mt-10 lg:mt-0" >
+                    <div className="w-full md:w-auto grid grid-cols-1 md:grid-cols-2 gap-5">
+                              {limitedJobs.map((job, index) => {
+                                const bgColor =
+                                  index === 0
+                                    ? "bg-cyan-200"
+                                    : index === 1
+                                    ? "bg-indigo-200"
+                                    : index === 2
+                                    ? "bg-yellow-200"
+                                    : "bg-purple-200";
+
+                                const color =
+                                  index === 0
+                                    ? "text-cyan-600"
+                                    : index === 1
+                                    ? "text-indigo-600"
+                                    : index === 2
+                                    ? "text-yellow-600"
+                                    : "text-purple-600";
+
+                                return (
+                                  <SecondaryCard
+                                    key={job.id}
+                                    bgColor={bgColor}
+                                    color={color}
                                     job={job}
-                                    className= {index < 2 ? "lg:ml-16" : ""}
-                                />
-                            ))
-                        }
+                                    className={index < 2 ? "lg:ml-16" : ""}
+                                    isFetching={isFetching}
+                                    isLoading={isLoading}
+                                  />
+                                );
+                              })}
                     </div>
                 </div>
             </div>
