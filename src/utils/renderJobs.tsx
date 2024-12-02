@@ -21,7 +21,10 @@ export const renderJobs = ({isLoading, isError, error, jobs, children,}: RenderJ
 
     return <div className="lg:w-9/12 m-auto text-red-500">{errorMessage}</div>;
   } else if (jobs.length === 0) {
-    return <div className="lg:w-9/12 m-auto text-red-500">No jobs available.</div>;
+    setTimeout(() => {
+      return <div className="lg:w-9/12 m-auto text-red-500">No jobs available.</div>;
+    }, 1000)
+    
   } else {
     return <>{children}</>; // Render children here
   }
