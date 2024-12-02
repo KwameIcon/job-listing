@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { JobProps } from "../../../pages/homeScreen";
 
 import JobProviderTag from "./jobProviderTag";
+import { Job } from "./primaryJobCard";
 const placeholderLogo = "https://via.placeholder.com/150?text=No+Logo";
 
 
 interface SecondaryCardProps{
-    job: JobProps;
+    job: Job;
     className: string;
     color?: string
     bgColor?: string;
@@ -40,9 +40,9 @@ const SecondaryCard: React.FC<SecondaryCardProps> = ({className, color, bgColor,
                     <div className={`w-full text-right font-mono ${color}`}>{job.datePosted || 'Now'}</div>
                     <div className="w-full flex items-center justify-start space-x-2">
                         <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center"> 
-                            <img src= {job.image || placeholderLogo} alt={`${job.companyName} Logo`} className="w-full rounded-full"/>
+                            <img src= {job.image || placeholderLogo} alt={`${job.company} Logo`} className="w-full rounded-full"/>
                         </span>
-                        <span className={`font-serif ${color} opacity-80`}>{job.companyName.length > 25 ? job.companyName.slice(0, 25) + "..." : job.companyName}</span>
+                        <span className={`font-serif ${color} opacity-80`}>{job.company.length > 25 ? job.company.slice(0, 25) + "..." : job.company}</span>
                     </div>
                     <div className={`w-full text-sm md:text-xl lg:text-xl font-bold opacity-80 ${color} my-1 md:my-0 lg:my-0`}>{job.title.length > 20 ? job.title.slice(0, 20) + "..." : job.title}</div>
                     <div className={` w-full text-normal ${color} opacity-80 font-light flex flex-wrap items-center justify-between`}>

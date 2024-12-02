@@ -6,28 +6,6 @@ import { FilterSearch, Jobs, Showcase, UserReviews } from "../components/contain
 import { Button, Card } from "../components/UIComponents";
 
 
-// job provider types
-export interface JobProvider {
-  jobProvider: string;
-  url: string;
-}
-
-
-
-// job types
-export interface JobProps{
-  id: string;
-  title:string;
-  companyName: string;
-  image: string;
-  location: string;
-  employmentType:string;
-  datePosted:string;
-  salaryRange: string;
-  jobProviders: JobProvider[];
-}
-
-
 
 // home screen component
 function HomeScreen() {
@@ -35,7 +13,7 @@ function HomeScreen() {
 
   // set default filter values
   const [filters, setFilters] = useState<FiltersProps>({
-    query: 'project manager',
+    query: 'Web Developer',
     location: 'United States',
     remoteOnly: 'false',
     employmentTypes: '',

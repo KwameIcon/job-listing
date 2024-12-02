@@ -2,8 +2,9 @@ import Button from "../buttons/button";
 import JobAttribute from "./jobAttribute";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile, faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { handleGetJobDetails } from "../../../utils/handleGetJobDetails";
+import useJobDetails from "../../../utils/handleGetJobDetails";
 import { JobProviderTag } from "..";
+import { FiltersProps } from "../../../hooks/useFilterData";
 
 
 
@@ -37,6 +38,7 @@ interface PrimaryJobCardProps {
     job:Job;
     isLoading: boolean;
     isFetching:boolean;
+    filters: FiltersProps;
     setIsProductDetails: React.Dispatch<React.SetStateAction<boolean>>;
     setSelectedJob: React.Dispatch<React.SetStateAction<Job | undefined>>
     setRelatedJobs: React.Dispatch<React.SetStateAction<Job[] | undefined>>
@@ -44,7 +46,7 @@ interface PrimaryJobCardProps {
 
 
 
-const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, isLoading, isFetching, setSelectedJob, setRelatedJobs, setIsProductDetails}) => {
+const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, filters, isLoading, isFetching, setSelectedJob, setRelatedJobs, setIsProductDetails}) => {
 
 
 
@@ -54,10 +56,13 @@ const PrimaryJobCard: React.FC<PrimaryJobCardProps> = ({job, isLoading, isFetchi
         return match ? match[0] : null; 
     }
 
+
+// Use the custom hook to get the job details
+  const handleGetJobDetails = useJobDetails();
     
     // fetch job details
     const handleFetchDetail = (jobId: string, jobTitle: string) => {
-        handleGetJobDetails(jobId, jobTitle, setSelectedJob, setRelatedJobs, setIsProductDetails)
+        handleGetJobDetails(jobId, jobTitle, filters, setSelectedJob, setRelatedJobs, setIsProductDetails)
     };
 
 

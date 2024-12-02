@@ -1,22 +1,24 @@
 import { Card, PrimaryJobCard } from "../UIComponents";
-import { ThreeDot } from "react-loading-indicators";
 import { FiltersProps, useFetchFilterData } from "../../hooks/useFilterData";
 import { JobDetails } from "../modals";
 import { useState } from "react";
 import { Job } from "../UIComponents/cards/primaryJobCard";
+import { renderJobs } from "../../utils/renderJobs";
 
 // jobs component types
 interface JobsProp {
-    filters: FiltersProps;
-    setFilters: React.Dispatch<React.SetStateAction<FiltersProps>>;
+  filters: FiltersProps;
+  setFilters: React.Dispatch<React.SetStateAction<FiltersProps>>;
 }
-
 
 // component
 const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
 
     // get data from fetchFilterData hook
-    const { data, isLoading, isFetching } = useFetchFilterData(filters);
+    const { data, isLoading, isFetching, isError, error } = useFetchFilterData(filters);
+
+    // type casting for error
+    const typedError = error as { message: string } | null;
 
     // states 
     const [isProductDetails, setIsProductDetails] = useState(false);
@@ -28,9 +30,9 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
     const jobs = data?.jobs || [];
     const jobCount = jobs.length;
     const nextPage = data?.nextPage || null;
+
+
     
-
-
     // handle pagination
     const handleNextPageFetch = () => {
         if (nextPage) {
@@ -38,9 +40,6 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
         }
     };
 
-
-    // set data to local storage
-    localStorage.setItem('jobs', JSON.stringify(jobs));
 
 
     return (
@@ -64,25 +63,38 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
                         }
                     >
                         <option>Date of Publication</option>
-                        <option value="1 hour ago">Ih ago</option>
+                        <option value="1 hour ago">1h ago</option>
                         <option value="1 day ago">1 day ago</option>
-                        <option value="2 days ago">2 day ago</option>
-                        <option value="3 days ago">3 day ago</option>
-                        <option value="4 days ago">4 day ago</option>
+                        <option value="2 days ago">2 days ago</option>
+                        <option value="3 days ago">3 days ago</option>
+                        <option value="4 days ago">4 days ago</option>
                     </select>
                 </div>
             </div>
 
             {/* Job listing */}
-            <div className="lg:w-9/12 m-auto">
-                {isLoading ? (
-                    <ThreeDot color="#32cd32" size="small" text="" textColor="" />
-                ) : (
-                    jobs.map((job: any) => (
-                        <PrimaryJobCard key={job.id} setSelectedJob={setSelectedJob} setIsProductDetails={setIsProductDetails} setRelatedJobs={setRelatedJobs} isLoading = {isLoading} isFetching = {isFetching} job={job}/>
-                    ))
-                )}
-            </div>
+            {renderJobs({
+                isLoading,
+                isError,
+                error: typedError,
+                jobs,
+                children: (
+                    <div className="lg:w-9/12 m-auto">
+                        {jobs.map((job: Job) => (
+                            <PrimaryJobCard
+                                key={job.id}
+                                filters={filters}
+                                setSelectedJob={setSelectedJob}
+                                setIsProductDetails={setIsProductDetails}
+                                setRelatedJobs={setRelatedJobs}
+                                isLoading={isLoading}
+                                isFetching={isFetching}
+                                job={job}
+                            />
+                        ))}
+                    </div>
+                ),
+            })}
 
             {/* Pagination */}
             <div className="w-full lg:w-9/12 flex items-center justify-end pt-5 m-auto">
@@ -93,7 +105,17 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
                     Next
                 </Card>
             </div>
-            {isProductDetails && <JobDetails  setIsProductDetails={setIsProductDetails} selectedJob={selectedJob} relatedJobs={relatedJobs} setRelatedJobs={setRelatedJobs} setSelectedJob={setSelectedJob}/>}
+
+            {isProductDetails && (
+                <JobDetails
+                filters={filters}
+                    setIsProductDetails={setIsProductDetails}
+                    selectedJob={selectedJob}
+                    relatedJobs={relatedJobs}
+                    setRelatedJobs={setRelatedJobs}
+                    setSelectedJob={setSelectedJob}
+                />
+            )}
         </div>
     );
 };

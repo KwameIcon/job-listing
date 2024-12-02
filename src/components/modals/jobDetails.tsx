@@ -2,9 +2,9 @@ import { Button, JobProviderTag } from "../UIComponents";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBriefcase, faClose, faDollarSign, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { Job } from "../UIComponents/cards/primaryJobCard";
-import { JobProps } from "../../pages/homeScreen";
-import { handleGetJobDetails } from "../../utils/handleGetJobDetails";
+import useJobDetails from "../../utils/handleGetJobDetails";
 import { useEffect, useRef } from "react";
+import { FiltersProps } from "../../hooks/useFilterData";
 
 // default logo if company logo not provided
 const placeholderLogo = "https://via.placeholder.com/150?text=No+Logo";
@@ -13,6 +13,7 @@ const placeholderLogo = "https://via.placeholder.com/150?text=No+Logo";
 // component types
 interface JobDetailsProps {
     selectedJob:Job | undefined;
+    filters: FiltersProps;
     relatedJobs: Job[] | undefined
     setIsProductDetails: React.Dispatch<React.SetStateAction<boolean>>;
     setSelectedJob: React.Dispatch<React.SetStateAction<Job | undefined>>
@@ -23,7 +24,7 @@ interface JobDetailsProps {
 
 
 // job details component
-const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsProductDetails, setSelectedJob, setRelatedJobs}) => {
+const JobDetails: React.FC<JobDetailsProps> = ({filters, selectedJob, relatedJobs, setIsProductDetails, setSelectedJob, setRelatedJobs}) => {
 
 
     // close modal ref
@@ -57,11 +58,14 @@ const JobDetails: React.FC<JobDetailsProps> = ({selectedJob, relatedJobs, setIsP
     }
 
 
+// Use the custom hook to get the job details
+  const handleGetJobDetails = useJobDetails();
+
 
     // get job details
-    const handleFetchDetail = (jobId: String, jobTitle: string) => {
+    const handleFetchDetail = (jobId: string, jobTitle: string) => {
         setIsProductDetails(false);
-        handleGetJobDetails(jobId, jobTitle, setSelectedJob, setRelatedJobs, setIsProductDetails)
+        handleGetJobDetails(jobId, jobTitle, filters, setSelectedJob, setRelatedJobs, setIsProductDetails)
     }
     
 
