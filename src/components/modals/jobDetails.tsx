@@ -70,7 +70,7 @@ const JobDetails: React.FC<JobDetailsProps> = ({filters, selectedJob, relatedJob
     
 
     return(
-        <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-85 overflow-hidden flex items-center justify-center p-2 py-4" ref={containerRef}>
+        <div className="fixed z-20 top-0 left-0 w-screen h-screen bg-black bg-opacity-85 overflow-hidden flex items-center justify-center p-2 py-4" ref={containerRef}>
 
 
             {/* card container */}

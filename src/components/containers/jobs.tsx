@@ -43,7 +43,7 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
 
 
     return (
-        <div className="w-full m-auto -mt-5 md:mt-5 py-4 px-2 md:p-4 lg:py-5 relative z-10">
+        <div className="w-full m-auto -mt-5 md:mt-5 py-4 px-2 md:p-4 lg:py-5 relative z-20">
             {/* Header text */}
             <div className="w-10/12 m-auto flex flex-col mb-3 md:flex-row md:items-center md:justify-between space-y-3 md:px-10 lg:px-0">
                 <p className=" w-full md:w-6/12 text-left opacity-60">
