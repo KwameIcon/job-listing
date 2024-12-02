@@ -49,7 +49,7 @@ const Jobs: React.FC<JobsProp> = ({ filters, setFilters }) => {
                 <p className=" w-full md:w-6/12 text-left opacity-60">
                     We found {jobCount} jobs available for you:
                 </p>
-                <div className="w-full md:w-6/12 text-right md:text-right">
+                <div className="w-full md:w-6/12 text-left md:text-right">
                     <span className="opacity-60">Sort by: </span>
                     <select
                         name="date_of_publication"

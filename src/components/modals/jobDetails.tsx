@@ -89,10 +89,10 @@ const JobDetails: React.FC<JobDetailsProps> = ({filters, selectedJob, relatedJob
                 <div className="w-full lg:w-3/5 shrink-0 h-auto lg:h-full lg:overflow-hidden lg:overflow-y-scroll lg:scrollbar-none mt-9 lg:px-3">
 
                     <div className="w-full flex justify-between items-center gap-5 my-4">
-                        <h1 className="w-7/12 text-2xl font-semibold break-words">
+                        <h1 className="w-10/12 md:w-7/12 text-xl md:text-2xl font-semibold break-words">
                         {selectedJob?.title}
                         </h1>
-                        <Button className="w-5/12 text-sm font-bold">Apply Now</Button>
+                        <Button className="w-2/12 md:w-5/12 text-sm font-bold">Apply Now</Button>
                     </div>
 
                     <div className="w-full flex items-center justify-start gap-2">
