@@ -35,7 +35,7 @@ const fetchJobs = async(filters: FiltersProps) => {
             url: "https://jobs-api14.p.rapidapi.com/v2/list",
             params,
             headers: {
-                'x-rapidapi-key': '69d23051fbmsh7505f694552e10fp183754jsn0e06d1e0fb23',
+                'x-rapidapi-key': '5fec2e63f4mshddedce126463105p136e4bjsnc8d3207da4ea',
                 'x-rapidapi-host': 'jobs-api14.p.rapidapi.com'
             }
         }
